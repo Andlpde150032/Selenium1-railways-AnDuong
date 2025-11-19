@@ -17,5 +17,8 @@
     "arriveAt": "Nha Trang",
     "seatType": "Soft bed with air conditioner",
     "ticketAmount": "1"
+  },
+  "uiElements": {
+    "bookTicketLinkText": "Book ticket"
   }
 }

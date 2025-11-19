@@ -32,7 +32,7 @@ public class LoginPageTest_TC04 extends demo.Testbase {
         driver.get(properties.getProperty("base.url"));
 
         // Click the "Book ticket" link on the navbar
-        driver.findElement(By.linkText("Book ticket")).click();
+        driver.findElement(By.linkText(jsonDataReader.getTestData("uiElements", "bookTicketLinkText"))).click();
 
         // Add a delay to observe result
         Thread.sleep(3000);
