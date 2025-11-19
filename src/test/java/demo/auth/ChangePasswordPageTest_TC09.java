@@ -39,7 +39,7 @@ public class ChangePasswordPageTest_TC09 extends demo.Testbase {
         driver.get(properties.getProperty("base.url"));
 
         // Click the Login link on the navbar
-        driver.findElement(By.linkText("Login")).click();
+        driver.findElement(By.linkText(jsonDataReader.getTestData("uiElements", "loginLinkText"))).click();
 
         // Perform login
         loginPage = new LoginPage(driver);
@@ -50,7 +50,7 @@ public class ChangePasswordPageTest_TC09 extends demo.Testbase {
         Thread.sleep(3000); // Wait for login to complete
 
         // Click on "Change Password" tab
-        driver.findElement(By.linkText("Change password")).click();
+        driver.findElement(By.linkText(jsonDataReader.getTestData("uiElements", "changePasswordLinkText"))).click();
         Thread.sleep(3000); // Wait for page to load
 
         // Perform password change
@@ -64,7 +64,7 @@ public class ChangePasswordPageTest_TC09 extends demo.Testbase {
         Thread.sleep(3000); // Wait for action to complete
 
         // Verify success message
-        assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'Your password has been updated!')]")).isDisplayed(), "Password change success message is not displayed.");
+        assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'" + jsonDataReader.getTestData("changePasswordMessages", "passwordChangeSuccessMessage") + "')]")).isDisplayed(), "Password change success message is not displayed.");
         System.out.println("TC09 Passed: User successfully changed password.");
     }
 }
