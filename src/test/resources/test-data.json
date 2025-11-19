@@ -12,10 +12,68 @@
     "password": "SecurePassword123!",
     "pid": "123456789"
   },                                                                                                                                                                                                      
+  "login": {
+    "email": "test.user@example.com",
+    "password": "SecurePassword123!"
+  },
+  "loginInvalid": {
+    "password": "invalid_password",
+    "invalidPasswordMultiAttempt": "wrong_password"
+  },
+  "unactivated_login": {
+    "email": "unactivated@example.com",
+    "password": "UnactivatedPassword123!"
+  },
+  "new_password": {
+    "password": "NewSecurePassword123!"
+  },
+  "register": {
+    "email": "test.user.register@example.com",
+    "password": "SecurePassword123!",
+    "pid": "123456789"
+  },
+  "register_empty_fields": {
+    "email": "emptyfields@example.com"
+  },
+  "registerInvalid": {
+    "password": "password123",
+    "confirmPassword": "password321",
+    "emptyPassword": "",
+    "emptyPid": ""
+  },
   "bookTicketTC14": {
     "departFrom": "Sài Gòn",
     "arriveAt": "Nha Trang",
     "seatType": "Soft bed with air conditioner",
     "ticketAmount": "1"
+  },
+  "uiElements": {
+    "bookTicketLinkText": "Book ticket",
+    "loginLinkText": "Login",
+    "myTicketLinkText": "My ticket",
+    "changePasswordLinkText": "Change password",
+    "logoutLinkText": "Logout",
+    "registerLinkText": "Register",
+    "timetableLinkText": "Timetable"
+  },
+  "urls": {
+    "myTicketPageUrlPartial": "/Ticket/Manage.cshtml",
+    "changePasswordPageUrlPartial": "/Account/ChangePassword.cshtml"
+  },
+  "loginErrorMessages": {
+    "blankUsername": "There was a problem with your login and/or errors exist in your form.",
+    "invalidPassword": "There was a problem with your login and/or errors exist in your form.",
+    "multiAttemptErrorMessage": "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.",
+    "invalidUsernameOrPasswordMessage": "Invalid username or password. Please try again."
+  },
+  "registerMessages": {
+    "registrationSuccessMessage": "Thank you for registering your account",
+    "mismatchedPasswordErrorMessage": "There're errors in the form. Please correct the errors and try again.",
+    "generalErrorMessage": "There're errors in the form. Please correct the errors and try again.",
+    "invalidPasswordLengthMessage": "Invalid password length",
+    "invalidPidLengthMessage": "Invalid ID length"
+  },
+  "changePasswordMessages": {
+    "passwordChangeSuccessMessage": "Your password has been updated!"
   }
 }

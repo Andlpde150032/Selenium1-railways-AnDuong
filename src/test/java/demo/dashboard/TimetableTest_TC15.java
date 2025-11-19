@@ -39,7 +39,7 @@ public class TimetableTest_TC15 extends demo.Testbase {
         driver.get(properties.getProperty("base.url"));
 
         // Click the Login link on the navbar
-        driver.findElement(By.linkText("Login")).click();
+        driver.findElement(By.linkText(jsonDataReader.getTestData("uiElements", "loginLinkText"))).click();
 
         // Perform login
         loginPage = new LoginPage(driver);
@@ -50,20 +50,20 @@ public class TimetableTest_TC15 extends demo.Testbase {
         Thread.sleep(3000); // Wait for login to complete
 
         // Click on "Timetable" tab
-        driver.findElement(By.linkText("Timetable")).click();
+        driver.findElement(By.linkText(jsonDataReader.getTestData("uiElements", "timetableLinkText"))).click();
         Thread.sleep(3000); // Wait for page to load
 
         // Click on "Book ticket" link for the route from "Huế" to "Sài Gòn"
         // This XPath needs to be specific to the "Book ticket" link for this route
         // Assuming there is a unique identifier or a way to locate this specific link.
         // For example, a link within a row that contains "Huế" and "Sài Gòn".
-        driver.findElement(By.xpath("//td[text()='Huế']/following-sibling::td[text()='Sài Gòn']/following-sibling::td/a[text()='Book ticket']")).click();
+        driver.findElement(By.xpath("//td[text()='" + jsonDataReader.getTestData("timetable", "departStation") + "']/following-sibling::td[text()='" + jsonDataReader.getTestData("timetable", "arriveStation") + "']/following-sibling::td/a[text()='" + jsonDataReader.getTestData("uiElements", "bookTicketLinkText") + "']")).click();
         Thread.sleep(5000); // Wait for Book Ticket page to load
 
         // Verify that the "Book ticket" page is loaded
         bookTicketPage = new BookTicketPage(driver);
-        assertEquals("Sài Gòn", bookTicketPage.getSelectedArriveStation(), "Arrive Station not pre-filled correctly.");
-        assertEquals("Huế", bookTicketPage.getSelectedDepartStation(), "Depart Station not pre-filled correctly.");
+        assertEquals(jsonDataReader.getTestData("timetable", "arriveStation"), bookTicketPage.getSelectedArriveStation(), "Arrive Station not pre-filled correctly.");
+        assertEquals(jsonDataReader.getTestData("timetable", "departStation"), bookTicketPage.getSelectedDepartStation(), "Depart Station not pre-filled correctly.");
 
         System.out.println("TC15 Passed: User redirected to Book ticket page from Timetable with pre-filled stations.");
     }
