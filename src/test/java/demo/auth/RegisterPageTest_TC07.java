@@ -37,21 +37,20 @@ public class RegisterPageTest_TC07 extends demo.Testbase {
         driver.get(properties.getProperty("base.url"));
 
         // Click the Register link on the navbar
-        driver.findElement(By.linkText("Register")).click();
-
-        // Create an instance of the RegisterPage and perform registration
-        registerPage = new RegisterPage(driver);
-        registerPage.performRegistration(
-                jsonDataReader.getTestData("register", "email"),
-                jsonDataReader.getTestData("register", "password"),
-                jsonDataReader.getTestData("register", "pid")
-        );
-
-        // Add a delay to observe the result
-        Thread.sleep(5000);
-
-        // Verify that the success message is displayed
-        assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'Thank you for registering your account')]")).isDisplayed(), "Registration success message is not displayed.");
-        System.out.println("TC07 Passed: User successfully created a new account.");
+                driver.findElement(By.linkText(jsonDataReader.getTestData("uiElements", "registerLinkText"))).click();
+                                                                                                                                                                                                                  
+                // Create an instance of the RegisterPage and perform registration
+                registerPage = new RegisterPage(driver);
+                registerPage.performRegistration(
+                        jsonDataReader.getTestData("register", "email"),
+                        jsonDataReader.getTestData("register", "password"),
+                        jsonDataReader.getTestData("register", "pid")
+                );
+                                                                                                                                                                                                                  
+                // Add a delay to observe the result
+                Thread.sleep(5000);
+                                                                                                                                                                                                                  
+                // Verify that the success message is displayed
+                assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'" + jsonDataReader.getTestData("registerMessages", "registrationSuccessMessage") + "')]")).isDisplayed(), "Registration success message is not displayed.");        System.out.println("TC07 Passed: User successfully created a new account.");
     }
 }
