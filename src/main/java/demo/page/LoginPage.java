@@ -9,54 +9,35 @@
  */
 package demo.page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
     private WebDriver driver;
 
-    // Using @FindBy for locating elements
-    @FindBy(id = "username")
-    private WebElement emailInput;
-
-    @FindBy(id = "password")
-    private WebElement passwordInput;
-
-    @FindBy(xpath = "//input[@type='submit']")
-    private WebElement loginButton;
+    private By emailInput = By.id("username");
+    private By passwordInput = By.id("password");
+    private By loginButton = By.xpath("//input[@type='submit']");
 
     // Constructor
     public LoginPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
     }
 
     // Method to enter email
     public void enterEmail(String email) {
-        emailInput.sendKeys(email);
-        System.out.println("Report: Email field filled.");
+        driver.findElement(emailInput).sendKeys(email);
     }
 
     // Method to enter password
     public void enterPassword(String password) {
-        passwordInput.sendKeys(password);
-        System.out.println("Report: Password field filled.");
+        driver.findElement(passwordInput).sendKeys(password);
     }
 
     // Method to click login button
     public void clickLoginButton() {
-        loginButton.click();
-        System.out.println("Report: LoginPage button clicked.");
-    }
-
-    // Method to perform login
-    public void performLogin(String email, String password) {
-        this.enterEmail(email);
-        this.enterPassword(password);
-        this.clickLoginButton();
+        driver.findElement(loginButton).click();
     }
 }
 
