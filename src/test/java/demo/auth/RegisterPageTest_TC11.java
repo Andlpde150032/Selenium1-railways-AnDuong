@@ -8,32 +8,27 @@
  */
 package demo.auth;
 
-import demo.page.RegisterPage;
-import demo.utils.JsonDataReader;
-import demo.utils.PropertiesUtils;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.util.Properties;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import java.time.Duration;
 
 public class RegisterPageTest_TC11 extends demo.Testbase {
 
     private Properties properties;
     private RegisterPage registerPage;
     private JsonDataReader jsonDataReader;
+    private WebDriverWait wait;
 
     @BeforeEach
     public void setUp() {
         super.setUp();
         properties = PropertiesUtils.loadProperties("src/test/resources/config.properties");
         jsonDataReader = new JsonDataReader("test-data.json");
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     @Test
-    public void testRegisterWithEmptyPasswordAndPid() throws InterruptedException {
+    public void testRegisterWithEmptyPasswordAndPid() {
         // Navigate to the main page
         driver.get(properties.getProperty("base.url"));
 
@@ -42,14 +37,14 @@ public class RegisterPageTest_TC11 extends demo.Testbase {
 
         // Create an instance of the RegisterPage and attempt registration with empty password and PID
         registerPage = new RegisterPage(driver);
-        registerPage.performRegistration(
-                jsonDataReader.getTestData("register_empty_fields", "email"), // Use a valid email
-                jsonDataReader.getTestData("registerInvalid", "emptyPassword"), // Empty password
-                jsonDataReader.getTestData("registerInvalid", "emptyPid")  // Empty PID
-        );
+        registerPage.enterEmail(jsonDataReader.getTestData("register_empty_fields", "email")); // Use a valid email
+        registerPage.enterPassword(jsonDataReader.getTestData("registerInvalid", "emptyPassword")); // Empty password
+        registerPage.enterConfirmPassword(jsonDataReader.getTestData("registerInvalid", "emptyPassword")); // Empty confirm password
+        registerPage.enterPid(jsonDataReader.getTestData("registerInvalid", "emptyPid")); // Empty PID
+        registerPage.clickRegisterButton();
 
-        // Add a delay to observe the result
-        Thread.sleep(5000);
+        // Wait for the error message to be displayed
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@class='message error']")));
 
         // Verify the general error message above the form
         String expectedGeneralErrorMessage = jsonDataReader.getTestData("registerMessages", "generalErrorMessage");
@@ -65,7 +60,5 @@ public class RegisterPageTest_TC11 extends demo.Testbase {
         String expectedPidErrorMessage = jsonDataReader.getTestData("registerMessages", "invalidPidLengthMessage");
         String actualPidErrorMessage = driver.findElement(By.xpath("//label[@for='pid']/following-sibling::*[@class='validation-error']")).getText().trim();
         assertEquals(expectedPidErrorMessage, actualPidErrorMessage, "PID error message is not displayed or not as expected.");
-
-        System.out.println("TC11 Passed: User cannot create account with empty password and PID and error messages displayed.");
     }
 }
