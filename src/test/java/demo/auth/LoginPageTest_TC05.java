@@ -44,17 +44,24 @@ public class LoginPageTest_TC05 extends demo.Testbase {
         String validEmail = jsonDataReader.getTestData("login", "email");
                 String invalidPassword = jsonDataReader.getTestData("loginInvalid", "invalidPasswordMultiAttempt"); // Use a consistently wrong password
                                                                                                                                                                                                                   
-                for (int i = 0; i < 4; i++) { // Repeat 4 times to trigger the message after 4 attempts
-                    loginPage.performLogin(validEmail, invalidPassword);
-                    Thread.sleep(2000); // Wait for potential error message
-                }
+                        for (int i = 0; i < 4; i++) { // Repeat 4 times to trigger the message after 4 attempts
                                                                                                                                                                                                                   
-                // Add a final delay to observe result
-                Thread.sleep(3000);
+                            loginPage.enterEmail(validEmail);
                                                                                                                                                                                                                   
-                // Assert error message is displayed
-                String expectedErrorMessage = jsonDataReader.getTestData("loginErrorMessages", "multiAttemptErrorMessage");        String actualErrorMessage = driver.findElement(By.xpath("//*[@id=\"content\"]/p")).getText().trim();
-        assertEquals(expectedErrorMessage, actualErrorMessage, "Error message for multiple wrong passwords is not as expected.");
-        System.out.println("TC05 Passed: System displays message after multiple wrong password attempts.");
+                            loginPage.enterPassword(invalidPassword);
+                                                                                                                                                                                                                  
+                            loginPage.clickLoginButton();
+                                                                                                                                                                                                                  
+                        }
+                                                                                                                                                                                                                  
+                
+                                                                                                                                                                                                                  
+                        // Assert error message is displayed
+                                                                                                                                                                                                                  
+                        String expectedErrorMessage = jsonDataReader.getTestData("loginErrorMessages", "multiAttemptErrorMessage");
+                                                                                                                                                                                                                  
+                        String actualErrorMessage = driver.findElement(By.xpath("//*[@id=\"content\"]/p")).getText().trim();
+                                                                                                                                                                                                                  
+                        assertEquals(expectedErrorMessage, actualErrorMessage, "Error message for multiple wrong passwords is not as expected.");
     }
 }
