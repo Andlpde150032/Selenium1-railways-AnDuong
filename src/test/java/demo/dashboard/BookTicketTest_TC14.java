@@ -55,11 +55,11 @@ public class BookTicketTest_TC14 extends demo.Testbase {
 
         // Select ticket details
         bookTicketPage = new BookTicketPage(driver);
-        bookTicketPage.selectDepartDate("1/1/2026"); // Example date, adjust as needed
-        bookTicketPage.selectDepartStation("Sài Gòn");
-        bookTicketPage.selectArriveStation("Nha Trang");
-        bookTicketPage.selectSeatType("Soft bed with air conditioner");
-        bookTicketPage.selectTicketAmount("1");
+        bookTicketPage.selectDepartDate(jsonDataReader.getTestData("bookTicketTC14", "departDate"));
+        bookTicketPage.selectDepartStation(jsonDataReader.getTestData("bookTicketTC14", "departFrom"));
+        bookTicketPage.selectArriveStation(jsonDataReader.getTestData("bookTicketTC14", "arriveAt"));
+        bookTicketPage.selectSeatType(jsonDataReader.getTestData("bookTicketTC14", "seatType"));
+        bookTicketPage.selectTicketAmount(jsonDataReader.getTestData("bookTicketTC14", "ticketAmount"));
 
         // Click on "Book ticket" button
         bookTicketPage.clickBookTicketButton();
@@ -69,11 +69,11 @@ public class BookTicketTest_TC14 extends demo.Testbase {
         assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'Ticket Booked Successfully!')]")).isDisplayed(), "Booking success message is not displayed.");
 
         // Verify ticket information (example checks, can be more detailed)
-        assertTrue(driver.getPageSource().contains("Depart Date: 1/1/2026"), "Depart Date not correct.");
-        assertTrue(driver.getPageSource().contains("Depart Station: Sài Gòn"), "Depart Station not correct.");
-        assertTrue(driver.getPageSource().contains("Arrive Station: Nha Trang"), "Arrive Station not correct.");
-        assertTrue(driver.getPageSource().contains("Seat Type: Soft bed with air conditioner"), "Seat Type not correct.");
-        assertTrue(driver.getPageSource().contains("Amount: 1"), "Amount not correct.");
+        assertTrue(driver.getPageSource().contains("Depart Date: " + jsonDataReader.getTestData("bookTicketTC14", "departDate")), "Depart Date not correct.");
+        assertTrue(driver.getPageSource().contains("Depart Station: " + jsonDataReader.getTestData("bookTicketTC14", "departFrom")), "Depart Station not correct.");
+        assertTrue(driver.getPageSource().contains("Arrive Station: " + jsonDataReader.getTestData("bookTicketTC14", "arriveAt")), "Arrive Station not correct.");
+        assertTrue(driver.getPageSource().contains("Seat Type: " + jsonDataReader.getTestData("bookTicketTC14", "seatType")), "Seat Type not correct.");
+        assertTrue(driver.getPageSource().contains("Amount: " + jsonDataReader.getTestData("bookTicketTC14", "ticketAmount")), "Amount not correct.");
 
         System.out.println("TC14 Passed: User successfully booked one ticket.");
     }

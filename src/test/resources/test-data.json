@@ -13,6 +13,7 @@
     "pid": "123456789"
   },                                                                                                                                                                                                      
   "bookTicketTC14": {
+    "departDate": "1/1/2026",
     "departFrom": "Sài Gòn",
     "arriveAt": "Nha Trang",
     "seatType": "Soft bed with air conditioner",
