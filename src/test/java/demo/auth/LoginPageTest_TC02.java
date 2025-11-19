@@ -55,7 +55,7 @@ public class LoginPageTest_TC02 extends demo.Testbase {
         Thread.sleep(3000); // Shorter delay for error message
 
         // Assert error message is displayed
-        String expectedErrorMessage = "There was a problem with your login and/or errors exist in your form.";
+        String expectedErrorMessage = jsonDataReader.getTestData("loginErrorMessages", "blankUsername");
         String actualErrorMessage = driver.findElement(By.xpath("//*[@id=\"content\"]/p")).getText().trim();
         assertEquals(expectedErrorMessage, actualErrorMessage, "Error message for blank username is not as expected.");
         System.out.println("TC02 Passed: User cannot login with blank username and error message displayed.");

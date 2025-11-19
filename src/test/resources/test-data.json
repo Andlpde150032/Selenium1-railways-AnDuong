@@ -17,5 +17,8 @@
     "arriveAt": "Nha Trang",
     "seatType": "Soft bed with air conditioner",
     "ticketAmount": "1"
+  },
+  "loginErrorMessages": {
+    "blankUsername": "There was a problem with your login and/or errors exist in your form."
   }
 }
