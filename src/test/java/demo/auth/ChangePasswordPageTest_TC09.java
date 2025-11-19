@@ -42,29 +42,28 @@ public class ChangePasswordPageTest_TC09 extends demo.Testbase {
         driver.findElement(By.linkText(jsonDataReader.getTestData("uiElements", "loginLinkText"))).click();
 
         // Perform login
-        loginPage = new LoginPage(driver);
-        loginPage.performLogin(
-                jsonDataReader.getTestData("login", "email"),
-                jsonDataReader.getTestData("login", "password")
-        );
-        Thread.sleep(3000); // Wait for login to complete
-
-        // Click on "Change Password" tab
-        driver.findElement(By.linkText(jsonDataReader.getTestData("uiElements", "changePasswordLinkText"))).click();
-        Thread.sleep(3000); // Wait for page to load
-
-        // Perform password change
-        changePasswordPage = new ChangePasswordPage(driver);
-        changePasswordPage.changePassword(
-                jsonDataReader.getTestData("login", "password"), // Old password
-                jsonDataReader.getTestData("new_password", "password"), // New password
-                jsonDataReader.getTestData("new_password", "password")  // Confirm new password
-        );
-
-        Thread.sleep(3000); // Wait for action to complete
-
-        // Verify success message
-        assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'" + jsonDataReader.getTestData("changePasswordMessages", "passwordChangeSuccessMessage") + "')]")).isDisplayed(), "Password change success message is not displayed.");
-        System.out.println("TC09 Passed: User successfully changed password.");
+                loginPage = new LoginPage(driver);
+                loginPage.enterEmail(
+                        jsonDataReader.getTestData("login", "email")
+                );
+                loginPage.enterPassword(
+                        jsonDataReader.getTestData("login", "password")
+                );
+                loginPage.clickLoginButton();
+        
+                // Click on "Change Password" tab
+                driver.findElement(By.linkText(jsonDataReader.getTestData("uiElements", "changePasswordLinkText"))).click();
+        
+                // Perform password change
+                changePasswordPage = new ChangePasswordPage(driver);
+                changePasswordPage.changePassword(
+                        jsonDataReader.getTestData("login", "password"), // Old password
+                        jsonDataReader.getTestData("new_password", "password"), // New password
+                        jsonDataReader.getTestData("new_password", "password")  // Confirm new password
+                );
+        
+                // Verify success message
+                assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'" + jsonDataReader.getTestData("changePasswordMessages", "passwordChangeSuccessMessage") + "')]")).isDisplayed(), "Password change s
+        uccess message is not displayed.");
     }
 }
