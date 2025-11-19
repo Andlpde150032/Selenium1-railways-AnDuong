@@ -42,19 +42,18 @@ public class LoginPageTest_TC05 extends demo.Testbase {
         loginPage = new LoginPage(driver);
 
         String validEmail = jsonDataReader.getTestData("login", "email");
-        String invalidPassword = "wrong_password"; // Use a consistently wrong password
-
-        for (int i = 0; i < 4; i++) { // Repeat 4 times to trigger the message after 4 attempts
-            loginPage.performLogin(validEmail, invalidPassword);
-            Thread.sleep(2000); // Wait for potential error message
-        }
-
-        // Add a final delay to observe result
-        Thread.sleep(3000);
-
-        // Assert error message is displayed
-        String expectedErrorMessage = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
-        String actualErrorMessage = driver.findElement(By.xpath("//*[@id=\"content\"]/p")).getText().trim();
+                String invalidPassword = jsonDataReader.getTestData("loginInvalid", "invalidPasswordMultiAttempt"); // Use a consistently wrong password
+                                                                                                                                                                                                                  
+                for (int i = 0; i < 4; i++) { // Repeat 4 times to trigger the message after 4 attempts
+                    loginPage.performLogin(validEmail, invalidPassword);
+                    Thread.sleep(2000); // Wait for potential error message
+                }
+                                                                                                                                                                                                                  
+                // Add a final delay to observe result
+                Thread.sleep(3000);
+                                                                                                                                                                                                                  
+                // Assert error message is displayed
+                String expectedErrorMessage = jsonDataReader.getTestData("loginErrorMessages", "multiAttemptErrorMessage");        String actualErrorMessage = driver.findElement(By.xpath("//*[@id=\"content\"]/p")).getText().trim();
         assertEquals(expectedErrorMessage, actualErrorMessage, "Error message for multiple wrong passwords is not as expected.");
         System.out.println("TC05 Passed: System displays message after multiple wrong password attempts.");
     }
