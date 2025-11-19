@@ -8,32 +8,27 @@
  */
 package demo.auth;
 
-import demo.page.RegisterPage;
-import demo.utils.JsonDataReader;
-import demo.utils.PropertiesUtils;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.util.Properties;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import java.time.Duration;
 
 public class RegisterPageTest_TC10 extends demo.Testbase {
 
     private Properties properties;
     private RegisterPage registerPage;
     private JsonDataReader jsonDataReader;
+    private WebDriverWait wait;
 
     @BeforeEach
     public void setUp() {
         super.setUp();
         properties = PropertiesUtils.loadProperties("src/test/resources/config.properties");
         jsonDataReader = new JsonDataReader("test-data.json");
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     @Test
-    public void testRegisterWithMismatchedPasswords() throws InterruptedException {
+    public void testRegisterWithMismatchedPasswords() {
         // Navigate to the main page
         driver.get(properties.getProperty("base.url"));
 
@@ -42,20 +37,18 @@ public class RegisterPageTest_TC10 extends demo.Testbase {
 
         // Create an instance of the RegisterPage and attempt registration with mismatched passwords
         registerPage = new RegisterPage(driver);
-        registerPage.performRegistration(
-                jsonDataReader.getTestData("register", "email"), // Use a valid email
-                jsonDataReader.getTestData("registerInvalid", "password"), // Valid password
-                jsonDataReader.getTestData("registerInvalid", "confirmPassword") // Mismatched confirm password
-        );
+        registerPage.enterEmail(jsonDataReader.getTestData("register", "email")); // Use a valid email
+        registerPage.enterPassword(jsonDataReader.getTestData("registerInvalid", "password")); // Valid password
+        registerPage.enterConfirmPassword(jsonDataReader.getTestData("registerInvalid", "confirmPassword")); // Mismatched confirm password
+        registerPage.enterPid(jsonDataReader.getTestData("register", "pid")); // Add PID
+        registerPage.clickRegisterButton();
 
-        // Add a delay to observe the result
-        Thread.sleep(5000);
+        // Wait for the error message to be displayed
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@class='message error']")));
 
         // Verify that the error message is displayed
         String expectedErrorMessage = jsonDataReader.getTestData("registerMessages", "mismatchedPasswordErrorMessage");
         String actualErrorMessage = driver.findElement(By.xpath("//p[@class='message error']")).getText().trim();
         assertEquals(expectedErrorMessage, actualErrorMessage, "Error message for mismatched passwords is not displayed or not as expected.");
-
-        System.out.println("TC10 Passed: User cannot create account with mismatched passwords and error message displayed.");
     }
 }
