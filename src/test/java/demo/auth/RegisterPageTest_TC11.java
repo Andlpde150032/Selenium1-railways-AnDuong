@@ -38,31 +38,31 @@ public class RegisterPageTest_TC11 extends demo.Testbase {
         driver.get(properties.getProperty("base.url"));
 
         // Click the Register link on the navbar
-        driver.findElement(By.linkText("Register")).click();
+        driver.findElement(By.linkText(jsonDataReader.getTestData("uiElements", "registerLinkText"))).click();
 
         // Create an instance of the RegisterPage and attempt registration with empty password and PID
         registerPage = new RegisterPage(driver);
         registerPage.performRegistration(
                 jsonDataReader.getTestData("register_empty_fields", "email"), // Use a valid email
-                "", // Empty password
-                ""  // Empty PID
+                jsonDataReader.getTestData("registerInvalid", "emptyPassword"), // Empty password
+                jsonDataReader.getTestData("registerInvalid", "emptyPid")  // Empty PID
         );
 
         // Add a delay to observe the result
         Thread.sleep(5000);
 
         // Verify the general error message above the form
-        String expectedGeneralErrorMessage = "There're errors in the form. Please correct the errors and try again.";
+        String expectedGeneralErrorMessage = jsonDataReader.getTestData("registerMessages", "generalErrorMessage");
         String actualGeneralErrorMessage = driver.findElement(By.xpath("//p[@class='message error']")).getText().trim();
         assertEquals(expectedGeneralErrorMessage, actualGeneralErrorMessage, "General error message is not displayed or not as expected.");
 
         // Verify error message next to password fields
-        String expectedPasswordErrorMessage = "Invalid password length";
+        String expectedPasswordErrorMessage = jsonDataReader.getTestData("registerMessages", "invalidPasswordLengthMessage");
         String actualPasswordErrorMessage = driver.findElement(By.xpath("//label[@for='password']/following-sibling::*[@class='validation-error']")).getText().trim();
         assertEquals(expectedPasswordErrorMessage, actualPasswordErrorMessage, "Password error message is not displayed or not as expected.");
 
         // Verify error message next to PID field
-        String expectedPidErrorMessage = "Invalid ID length";
+        String expectedPidErrorMessage = jsonDataReader.getTestData("registerMessages", "invalidPidLengthMessage");
         String actualPidErrorMessage = driver.findElement(By.xpath("//label[@for='pid']/following-sibling::*[@class='validation-error']")).getText().trim();
         assertEquals(expectedPidErrorMessage, actualPidErrorMessage, "PID error message is not displayed or not as expected.");
 
