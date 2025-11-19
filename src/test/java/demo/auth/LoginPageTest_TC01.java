@@ -42,10 +42,9 @@ public class LoginPageTest_TC01 extends demo.Testbase {
         loginPage = new LoginPage(driver);
 
         // Perform login
-        loginPage.performLogin(jsonDataReader.getTestData("login", "email"), jsonDataReader.getTestData("login", "password"));
-
-        // Add a delay to observe result
-        Thread.sleep(5000);
+        loginPage.enterEmail(jsonDataReader.getTestData("login", "email"));
+        loginPage.enterPassword(jsonDataReader.getTestData("login", "password"));
+        loginPage.clickLoginButton();
 
         // Verify redirection to homepage
         String expectedUrl = properties.getProperty("base.url") + "/Page/HomePage.cshtml";
@@ -54,7 +53,6 @@ public class LoginPageTest_TC01 extends demo.Testbase {
         String expectedWelcomeMessage = "Welcome " + jsonDataReader.getTestData("login", "email");
         String actualWelcomeMessage = driver.findElement(By.xpath("//div[@class='account']/strong")).getText().trim();
         assertEquals(expectedWelcomeMessage, actualWelcomeMessage, "Welcome message is not as expected.");
-        System.out.println("TC01 Passed: User successfully logged in and welcome message displayed.");
 
     }
 }
