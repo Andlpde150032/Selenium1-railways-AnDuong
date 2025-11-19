@@ -43,15 +43,16 @@ public class BookTicketTest_TC14 extends demo.Testbase {
 
         // Perform login
         loginPage = new LoginPage(driver);
-        loginPage.performLogin(
-                jsonDataReader.getTestData("login", "email"),
+        loginPage.enterEmail(
+                jsonDataReader.getTestData("login", "email")
+        );
+        loginPage.enterPassword(
                 jsonDataReader.getTestData("login", "password")
         );
-        Thread.sleep(3000); // Wait for login to complete
+        loginPage.clickLoginButton();
 
         // Click on "Book ticket" tab
         driver.findElement(By.linkText("Book ticket")).click();
-        Thread.sleep(3000); // Wait for page to load
 
         // Select ticket details
         bookTicketPage = new BookTicketPage(driver);
@@ -63,7 +64,6 @@ public class BookTicketTest_TC14 extends demo.Testbase {
 
         // Click on "Book ticket" button
         bookTicketPage.clickBookTicketButton();
-        Thread.sleep(5000); // Wait for booking to complete
 
         // Verify success message
         assertTrue(driver.findElement(By.xpath("//h1[contains(text(),'Ticket Booked Successfully!')]")).isDisplayed(), "Booking success message is not displayed.");
@@ -74,7 +74,5 @@ public class BookTicketTest_TC14 extends demo.Testbase {
         assertTrue(driver.getPageSource().contains("Arrive Station: " + jsonDataReader.getTestData("bookTicketTC14", "arriveAt")), "Arrive Station not correct.");
         assertTrue(driver.getPageSource().contains("Seat Type: " + jsonDataReader.getTestData("bookTicketTC14", "seatType")), "Seat Type not correct.");
         assertTrue(driver.getPageSource().contains("Amount: " + jsonDataReader.getTestData("bookTicketTC14", "ticketAmount")), "Amount not correct.");
-
-        System.out.println("TC14 Passed: User successfully booked one ticket.");
     }
 }
