@@ -42,14 +42,13 @@ public class LoginPageTest_TC03 extends demo.Testbase {
         loginPage = new LoginPage(driver);
 
         // Enter valid email but invalid password
-                loginPage.performLogin(jsonDataReader.getTestData("login", "email"), jsonDataReader.getTestData("loginInvalid", "password"));
-                                                                                                                                                                                                                  
-                // Add a delay to observe result                                                                                                                                                                  
-                Thread.sleep(3000);                                                                                                                                                                               
-                                                                                                                                                                                                                  
-                // Assert error message is displayed                                                                                                                                                              
-                String expectedErrorMessage = jsonDataReader.getTestData("loginErrorMessages", "invalidPassword");        String actualErrorMessage = driver.findElement(By.xpath("//*[@id=\"content\"]/p")).getText().trim();
-        assertEquals(expectedErrorMessage, actualErrorMessage, "Error message for invalid password is not as expected.");
-        System.out.println("TC03 Passed: User cannot login with invalid password and error message displayed.");
+                        loginPage.enterEmail(jsonDataReader.getTestData("login", "email"));
+                        loginPage.enterPassword(jsonDataReader.getTestData("loginInvalid", "password"));
+                        loginPage.clickLoginButton();
+                
+                        // Assert error message is displayed
+                        String expectedErrorMessage = jsonDataReader.getTestData("loginErrorMessages", "invalidPassword");
+                        String actualErrorMessage = driver.findElement(By.xpath("//*[@id=\"content\"]/p")).getText().trim();
+                        assertEquals(expectedErrorMessage, actualErrorMessage, "Error message for invalid password is not as expected.");
     }
 }
