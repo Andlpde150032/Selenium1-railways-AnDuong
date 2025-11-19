@@ -38,21 +38,21 @@ public class RegisterPageTest_TC10 extends demo.Testbase {
         driver.get(properties.getProperty("base.url"));
 
         // Click the Register link on the navbar
-        driver.findElement(By.linkText("Register")).click();
+        driver.findElement(By.linkText(jsonDataReader.getTestData("uiElements", "registerLinkText"))).click();
 
         // Create an instance of the RegisterPage and attempt registration with mismatched passwords
         registerPage = new RegisterPage(driver);
         registerPage.performRegistration(
                 jsonDataReader.getTestData("register", "email"), // Use a valid email
-                "password123", // Valid password
-                "password321" // Mismatched confirm password
+                jsonDataReader.getTestData("registerInvalid", "password"), // Valid password
+                jsonDataReader.getTestData("registerInvalid", "confirmPassword") // Mismatched confirm password
         );
 
         // Add a delay to observe the result
         Thread.sleep(5000);
 
         // Verify that the error message is displayed
-        String expectedErrorMessage = "There're errors in the form. Please correct the errors and try again.";
+        String expectedErrorMessage = jsonDataReader.getTestData("registerMessages", "mismatchedPasswordErrorMessage");
         String actualErrorMessage = driver.findElement(By.xpath("//p[@class='message error']")).getText().trim();
         assertEquals(expectedErrorMessage, actualErrorMessage, "Error message for mismatched passwords is not displayed or not as expected.");
 
