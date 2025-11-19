@@ -41,25 +41,24 @@ public class LoginPageTest_TC08 extends demo.Testbase {
         driver.get(properties.getProperty("base.url"));
 
         // Click the Login link on the navbar
-        driver.findElement(By.linkText("Login")).click();
-
-        // Create an instance of the LoginPage page object
-        loginPage = new LoginPage(driver);
-
-        // Assuming an unactivated account's credentials are available in test-data.json
-        // For demonstration, using existing login credentials but this should ideally be
-        // a dedicated unactivated account's credentials.
-        loginPage.performLogin(
-                jsonDataReader.getTestData("unactivated_login", "email"), // Placeholder for unactivated account email
-                jsonDataReader.getTestData("unactivated_login", "password") // Placeholder for unactivated account password
-        );
-
-        // Add a delay to observe result
-        Thread.sleep(3000);
-
-        // Assert error message is displayed
-        String expectedErrorMessage = "Invalid username or password. Please try again.";
-        String actualErrorMessage = driver.findElement(By.xpath("//*[@id=\"content\"]/p")).getText().trim();
+                driver.findElement(By.linkText(jsonDataReader.getTestData("uiElements", "loginLinkText"))).click();
+                                                                                                                                                                                                                  
+                // Create an instance of the LoginPage page object
+                loginPage = new LoginPage(driver);
+                                                                                                                                                                                                                  
+                // Assuming an unactivated account's credentials are available in test-data.json
+                // For demonstration, using existing login credentials but this should ideally be
+                // a dedicated unactivated account's credentials.
+                loginPage.performLogin(
+                        jsonDataReader.getTestData("unactivated_login", "email"), // Placeholder for unactivated account email
+                        jsonDataReader.getTestData("unactivated_login", "password") // Placeholder for unactivated account password
+                );
+                                                                                                                                                                                                                  
+                // Add a delay to observe result
+                Thread.sleep(3000);
+                                                                                                                                                                                                                  
+                // Assert error message is displayed
+                String expectedErrorMessage = jsonDataReader.getTestData("loginErrorMessages", "invalidUsernameOrPasswordMessage");        String actualErrorMessage = driver.findElement(By.xpath("//*[@id=\"content\"]/p")).getText().trim();
         assertEquals(expectedErrorMessage, actualErrorMessage, "Error message for unactivated account is not as expected.");
         System.out.println("TC08 Passed: User cannot login with unactivated account and error message displayed.");
     }
