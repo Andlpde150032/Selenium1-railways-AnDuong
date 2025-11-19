@@ -42,10 +42,9 @@ public class LoginPageTest_TC06 extends demo.Testbase {
         loginPage = new LoginPage(driver);
 
         // Perform login with valid credentials
-        loginPage.performLogin(jsonDataReader.getTestData("login", "email"), jsonDataReader.getTestData("login", "password"));
-
-        // Add a delay to observe result
-        Thread.sleep(5000);
+        loginPage.enterEmail(jsonDataReader.getTestData("login", "email"));
+        loginPage.enterPassword(jsonDataReader.getTestData("login", "password"));
+        loginPage.clickLoginButton();
 
         // Verify the presence of "My ticket", "Change password" and "Logout" tabs
         assertTrue(driver.findElement(By.linkText(jsonDataReader.getTestData("uiElements", "myTicketLinkText"))).isDisplayed(), "My ticket tab is not displayed.");
@@ -54,15 +53,11 @@ public class LoginPageTest_TC06 extends demo.Testbase {
 
         // Verify redirection for "My ticket"
         driver.findElement(By.linkText(jsonDataReader.getTestData("uiElements", "myTicketLinkText"))).click();
-        Thread.sleep(3000);
         assertTrue(driver.getCurrentUrl().contains(jsonDataReader.getTestData("urls", "myTicketPageUrlPartial")), "Not redirected to My ticket page.");
         driver.navigate().back(); // Go back to home page
 
         // Verify redirection for "Change password"
         driver.findElement(By.linkText(jsonDataReader.getTestData("uiElements", "changePasswordLinkText"))).click();
-        Thread.sleep(3000);
         assertTrue(driver.getCurrentUrl().contains(jsonDataReader.getTestData("urls", "changePasswordPageUrlPartial")), "Not redirected to Change password page.");
-
-        System.out.println("TC06 Passed: Additional pages displayed and redirects correctly after login.");
     }
 }
