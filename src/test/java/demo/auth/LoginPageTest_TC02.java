@@ -14,29 +14,27 @@ import demo.utils.PropertiesUtils;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Properties;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import java.time.Duration;
 
 public class LoginPageTest_TC02 extends demo.Testbase {
 
     private Properties properties;
     private LoginPage loginPage;
     private JsonDataReader jsonDataReader;
+    private WebDriverWait wait;
 
     @BeforeEach
     public void setUp() {
         super.setUp();
         properties = PropertiesUtils.loadProperties("src/test/resources/config.properties");
         jsonDataReader = new JsonDataReader("test-data.json");
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     @Test
-    public void testLoginWithBlankUsername() throws InterruptedException {
+    public void testLoginWithBlankUsername() {
         // Navigate to the main page
         driver.get(properties.getProperty("base.url"));
 
@@ -51,14 +49,13 @@ public class LoginPageTest_TC02 extends demo.Testbase {
         loginPage.enterPassword(jsonDataReader.getTestData("login", "password"));
         loginPage.clickLoginButton();
 
-        // Add a delay to observe result
-        Thread.sleep(3000); // Shorter delay for error message
+        // Wait for the error message to be visible
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"content\"]/p")));
 
         // Assert error message is displayed
         String expectedErrorMessage = jsonDataReader.getTestData("loginErrorMessages", "blankUsername");
         String actualErrorMessage = driver.findElement(By.xpath("//*[@id=\"content\"]/p")).getText().trim();
         assertEquals(expectedErrorMessage, actualErrorMessage, "Error message for blank username is not as expected.");
-        System.out.println("TC02 Passed: User cannot login with blank username and error message displayed.");
     }
 }
 
