@@ -1,3 +1,4 @@
+package demo.auth;
 import demo.page.HomePage;
 import demo.page.LoginPage;
 import demo.utils.JsonDataReader;
@@ -47,7 +48,7 @@ loginPage.clickLoginButton();
 Thread.sleep(5000);
 
 // Verify redirection to homepage
-String expectedUrl = properties.getProperty("base.url");
+String expectedUrl = properties.getProperty("base.url") + HomePage.HOMEPAGE_PATH;
 assertEquals(expectedUrl, driver.getCurrentUrl(), "User was not redirected to the homepage.");
 
 homePage = new HomePage(driver);
