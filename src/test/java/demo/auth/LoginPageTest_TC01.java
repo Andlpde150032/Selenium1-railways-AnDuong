@@ -7,10 +7,7 @@ import demo.utils.PropertiesUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,7 +42,7 @@ loginPage.enterEmail(jsonDataReader.getTestData("login", "email"));
 loginPage.enterPassword(jsonDataReader.getTestData("login", "password"));
 loginPage.clickLoginButton();
 
-Thread.sleep(5000);
+
 
 // Verify redirection to homepage
 String expectedUrl = properties.getProperty("base.url") + HomePage.HOMEPAGE_PATH;
