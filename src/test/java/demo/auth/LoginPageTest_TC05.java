@@ -61,6 +61,6 @@ public class LoginPageTest_TC05 extends demo.Testbase {
         // Wait for a generic error message element to be visible
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"content\"]/p")));
         String actualErrorMessage = driver.findElement(By.xpath("//*[@id=\"content\"]/p")).getText().trim();
-        assertTrue(actualErrorMessage.contains(expectedErrorMessage), "Error message for multiple wrong passwords is not as expected. Actual: " + actualErrorMessage + ", Expected to contain: " + expectedErrorMessage);
+        assertEquals(expectedErrorMessage, actualErrorMessage, "Error message for multiple wrong passwords is not as expected");
     }
 }
