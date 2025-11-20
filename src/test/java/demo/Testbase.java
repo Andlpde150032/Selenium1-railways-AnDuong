@@ -11,14 +11,14 @@ public class Testbase {
     protected WebDriver driver;
 
     @BeforeEach
-    protected void setUp() {
+    public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
 
     @AfterEach
-    protected void tearDown() {
+    public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
