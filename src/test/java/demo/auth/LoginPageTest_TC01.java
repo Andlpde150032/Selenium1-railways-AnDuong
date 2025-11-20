@@ -47,7 +47,7 @@ loginPage.clickLoginButton();
 Thread.sleep(5000);
 
 // Verify redirection to homepage
-String expectedUrl = properties.getProperty("base.url") + "/Page/HomePage.cshtml";
+String expectedUrl = properties.getProperty("base.url");
 assertEquals(expectedUrl, driver.getCurrentUrl(), "User was not redirected to the homepage.");
 
 homePage = new HomePage(driver);
