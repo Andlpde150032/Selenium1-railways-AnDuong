@@ -11,6 +11,11 @@ package demo.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import java.time.Duration;
 
 public class LoginPage {
 
@@ -27,16 +32,25 @@ public class LoginPage {
 
     // Method to enter email
     public void enterEmail(String email) {
-        driver.findElement(emailInput).sendKeys(email);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(emailInput));
+        emailField.clear();
+        emailField.sendKeys(email);
     }
 
     // Method to enter password
     public void enterPassword(String password) {
-        driver.findElement(passwordInput).sendKeys(password);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(passwordInput));
+        passwordField.clear();
+        passwordField.sendKeys(password);
     }
 
     // Method to click login button
     public void clickLoginButton() {
+        // Scroll the login button into view
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(loginButton));
         driver.findElement(loginButton).click();
     }
 }

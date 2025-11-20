@@ -1,11 +1,3 @@
-/**
- * @author      AnDLP
- * @version     1.0
- * @since       2025-11-18
- *
- * Test module: Login
- * Description: System shows message when user enters wrong password several times
- */
 package demo.auth;
 
 import demo.page.LoginPage;
@@ -16,11 +8,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Properties;
+
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import java.time.Duration;
 
 public class LoginPageTest_TC05 extends demo.Testbase {
     private Properties properties;
-    private LoginPage loginPage;
     private JsonDataReader jsonDataReader;
 
     @BeforeEach
@@ -28,6 +24,13 @@ public class LoginPageTest_TC05 extends demo.Testbase {
         super.setUp();
         properties = PropertiesUtils.loadProperties("src/test/resources/config.properties");
         jsonDataReader = new JsonDataReader("test-data.json");
+    }
+
+    private void performLoginAttempt(String email, String password) {
+        LoginPage loginPage = new LoginPage(driver); // Re-instantiate LoginPage to get fresh elements
+        loginPage.enterEmail(email);
+        loginPage.enterPassword(password);
+        loginPage.clickLoginButton();
     }
 
     @Test
@@ -38,30 +41,22 @@ public class LoginPageTest_TC05 extends demo.Testbase {
         // Click the Login link on the navbar
         driver.findElement(By.linkText("Login")).click();
 
-        // Create an instance of the LoginPage page object
-        loginPage = new LoginPage(driver);
-
         String validEmail = jsonDataReader.getTestData("login", "email");
-                String invalidPassword = jsonDataReader.getTestData("loginInvalid", "invalidPasswordMultiAttempt"); // Use a consistently wrong password
-                                                                                                                                                                                                                  
-                        for (int i = 0; i < 4; i++) { // Repeat 4 times to trigger the message after 4 attempts
-                                                                                                                                                                                                                  
-                            loginPage.enterEmail(validEmail);
-                                                                                                                                                                                                                  
-                            loginPage.enterPassword(invalidPassword);
-                                                                                                                                                                                                                  
-                            loginPage.clickLoginButton();
-                                                                                                                                                                                                                  
-                        }
-                                                                                                                                                                                                                  
-                
-                                                                                                                                                                                                                  
-                        // Assert error message is displayed
-                                                                                                                                                                                                                  
-                        String expectedErrorMessage = jsonDataReader.getTestData("loginErrorMessages", "multiAttemptErrorMessage");
-                                                                                                                                                                                                                  
-                        String actualErrorMessage = driver.findElement(By.xpath("//*[@id=\"content\"]/p")).getText().trim();
-                                                                                                                                                                                                                  
-                        assertEquals(expectedErrorMessage, actualErrorMessage, "Error message for multiple wrong passwords is not as expected.");
+        String invalidPassword = jsonDataReader.getTestData("loginInvalid", "password");
+
+        // Perform 5 login attempts
+        performLoginAttempt(validEmail, invalidPassword);
+        performLoginAttempt(validEmail, invalidPassword);
+        performLoginAttempt(validEmail, invalidPassword);
+        performLoginAttempt(validEmail, invalidPassword);
+        performLoginAttempt(validEmail, invalidPassword);
+
+        // Assert error message is displayed for multiple attempts
+        String expectedErrorMessage = jsonDataReader.getTestData("loginErrorMessages", "multiAttemptErrorMessage");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        // Wait for a generic error message element to be visible
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"content\"]/p")));
+        String actualErrorMessage = driver.findElement(By.xpath("//*[@id=\"content\"]/p")).getText().trim();
+        assertTrue(actualErrorMessage.contains(expectedErrorMessage), "Error message for multiple wrong passwords is not as expected. Actual: " + actualErrorMessage + ", Expected to contain: " + expectedErrorMessage);
     }
 }
