@@ -19,19 +19,19 @@
     "password": "SecurePassword123!",
     "pid": "123456789"
   },
-      "bookTicketTC14": {
-        "departFrom": "Sài Gòn",
-        "arriveAt": "Nha Trang",
-        "seatType": "Soft bed with air conditioner",
-        "ticketAmount": "1"
-      },
-      "new_password": {
-        "password": "NewSecurePassword123!"
-      },
-      "changePasswordMessages": {
-        "passwordChangeSuccessMessage": "Your password has been updated!"
-      },  "loginErrorMessages": {
-    "blankUsername": "There was a problem with your login and/or errors exist in your form.",
-    "invalidPassword": "There was a problem with your login and/or errors exist in your form."
-  }
+  "bookTicketTC14": {
+    "departFrom": "Sài Gòn",
+    "arriveAt": "Nha Trang",
+    "seatType": "Soft bed with air conditioner",
+    "ticketAmount": "1"
+  },
+  "new_password": {
+    "password": "NewSecurePassword123!"
+  },
+  "changePasswordMessages": {
+    "passwordChangeSuccessMessage": "Your password has been updated!"
+  },  "loginErrorMessages": {
+  "blankUsername": "There was a problem with your login and/or errors exist in your form.",
+  "invalidPassword": "There was a problem with your login and/or errors exist in your form."
+}
 }
