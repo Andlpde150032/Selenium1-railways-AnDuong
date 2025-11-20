@@ -11,6 +11,9 @@ public class PropertiesUtils {
         Properties properties = new Properties();
         try {
             properties.load(new InputStreamReader(new FileInputStream(path), "UTF-8"));
+            for (String key : properties.stringPropertyNames()) {
+                properties.setProperty(key, properties.getProperty(key).trim());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
