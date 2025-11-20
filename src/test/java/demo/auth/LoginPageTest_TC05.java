@@ -31,6 +31,10 @@ public class LoginPageTest_TC05 extends demo.Testbase {
         loginPage.enterEmail(email);
         loginPage.enterPassword(password);
         loginPage.clickLoginButton();
+
+        // After clicking login button, wait for the login button to be clickable again for the next attempt
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='submit']")));
     }
 
     @Test
