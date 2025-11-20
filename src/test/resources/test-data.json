@@ -1,33 +1,28 @@
-{                                                                                                         
-                                                                                                          
-  "timetable": {                                                                                          
-                                                                                                          
-    "departStation": "Huế",                                                                               
-                                                                                                          
-    "arriveStation": "Sài Gòn"                                                                            
-                                                                                                          
-  },                                                                                                      
-                                                                                                          
-    "login": {                                                                                            
-      "email": "test.user@example.com",                                                                   
-      "password": "SecurePassword123!"                                                                    
-    },                                                                                                    
-    "loginInvalid": {                                                                                     
-      "password": "invalid_password"                                                                      
-    },                                                                                                    
-    "register": {                                                                                         
-      "email": "test.user.register@example.com",                                                          
-      "password": "SecurePassword123!",                                                                   
-      "pid": "123456789"                                                                                  
-    },                                                                                                    
-    "bookTicketTC14": {                                                                                   
-      "departFrom": "Sài Gòn",                                                                            
-      "arriveAt": "Nha Trang",                                                                            
-      "seatType": "Soft bed with air conditioner",                                                        
-      "ticketAmount": "1"                                                                                 
-    },                                                                                                    
-    "loginErrorMessages": {                                                                               
-      "blankUsername": "There was a problem with your login and/or errors exist in your form.",           
-      "invalidPassword": "There was a problem with your login and/or errors exist in your form."          
-    }                                                                                                     
+{
+  "timetable": {
+    "departStation": "Huế",
+    "arriveStation": "Sài Gòn"
+  },
+  "login": {
+    "email": "test.user@example.com",
+    "password": "SecurePassword123!"
+  },
+  "loginInvalid": {
+    "password": "invalid_password"
+  },
+  "register": {
+    "email": "test.user.register@example.com",
+    "password": "SecurePassword123!",
+    "pid": "123456789"
+  },
+  "bookTicketTC14": {
+    "departFrom": "Sài Gòn",
+    "arriveAt": "Nha Trang",
+    "seatType": "Soft bed with air conditioner",
+    "ticketAmount": "1"
+  },
+  "loginErrorMessages": {
+    "blankUsername": "There was a problem with your login and/or errors exist in your form.",
+    "invalidPassword": "There was a problem with your login and/or errors exist in your form."
   }
+}
