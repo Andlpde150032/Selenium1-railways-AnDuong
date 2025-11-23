@@ -10,6 +10,8 @@ public class PasswordResetPage extends BasePage {
     private final By resetPasswordButton = By.cssSelector("input[title='Reset password']");
     private final By formErrorMessage = By.cssSelector("p.message.error");
     private final By tokenErrorMessage = By.xpath("//li[@class='reset-token']/label[@class='validation-error']");
+    private final By confirmPasswordErrorMessage = By
+            .xpath("//li[@class='confirm-password']/label[@class='validation-error']");
 
     public void resetPassword(String newPassword, String confirmPassword) {
         enterText(newPasswordInput, newPassword);
@@ -26,5 +28,9 @@ public class PasswordResetPage extends BasePage {
 
     public String getTokenErrorMessage() {
         return getText(tokenErrorMessage);
+    }
+
+    public String getConfirmPasswordErrorMessage() {
+        return getText(confirmPasswordErrorMessage);
     }
 }
