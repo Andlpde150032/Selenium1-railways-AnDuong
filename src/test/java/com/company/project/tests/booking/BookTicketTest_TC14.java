@@ -4,6 +4,7 @@ import com.company.project.base.BaseTest;
 import com.company.project.pages.BookTicketPage;
 import com.company.project.pages.HomePage;
 import com.company.project.pages.SuccessPage;
+import com.company.project.utils.DateUtils;
 import com.company.project.utils.JsonReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -16,20 +17,18 @@ public class BookTicketTest_TC14 extends BaseTest {
                 homePage.open();
 
                 // Pre-condition: Login with existing test account
-                String email = JsonReader.getData("login", "email");
-                String password = JsonReader.getData("login", "password");
+                String email = JsonReader.getData("TC14", "loginEmail");
+                String password = JsonReader.getData("TC14", "loginPassword");
                 homePage.goToLoginPage().login(email, password);
 
-                // Navigate to Book Ticket page
-                BookTicketPage bookTicketPage = homePage.goToBookTicketPage();
-
                 // Book a ticket
-                String departDate = JsonReader.getData("TC14", "departDate");
+                String departDate = DateUtils.getDynamicDate(JsonReader.getData("TC14", "departDate"));
                 String departFrom = JsonReader.getData("TC14", "departFrom");
                 String arriveAt = JsonReader.getData("TC14", "arriveAt");
                 String seatType = JsonReader.getData("TC14", "seatType");
                 String ticketAmount = JsonReader.getData("TC14", "ticketAmount");
 
+                BookTicketPage bookTicketPage = homePage.goToBookTicketPage();
                 bookTicketPage.bookTicket(departDate, departFrom, arriveAt, seatType, ticketAmount);
 
                 // Verify success message
