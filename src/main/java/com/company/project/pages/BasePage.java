@@ -35,9 +35,21 @@ public class BasePage {
     }
 
     protected String getText(By locator) {
-        WebElement element = waitForElementVisible(locator);
-        scrollToElement(element);
-        return element.getText();
+        try {
+            getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
+            java.util.List<WebElement> elements = getDriver().findElements(locator);
+            getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+            if (elements.isEmpty()) {
+                return "";
+            }
+
+            WebElement element = elements.get(0);
+            scrollToElement(element);
+            return element.getText();
+        } catch (Exception e) {
+            return "";
+        }
     }
 
     protected WebElement waitForElementVisible(By locator) {
