@@ -2,5 +2,9 @@
   "login": {
     "email": "AdminAn@gmail.com",
     "password": "Admin12345"
+  },
+  "TC07": {
+    "password": "Password123",
+    "pid": "123456789"
   }
 }

@@ -16,8 +16,8 @@ public class RegisterTest_TC07 extends BaseTest {
         RegisterPage registerPage = homePage.goToRegisterPage();
 
         String email = "testuser" + System.currentTimeMillis() + "@gmail.com";
-        String password = "Password123";
-        String pid = "123456789";
+        String password = com.company.project.utils.JsonReader.getData("TC07", "password");
+        String pid = com.company.project.utils.JsonReader.getData("TC07", "pid");
 
         registerPage.register(email, password, password, pid);
 
