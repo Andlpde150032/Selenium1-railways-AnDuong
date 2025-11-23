@@ -22,7 +22,7 @@ public class LoginPageTest_TC03 extends BaseTest {
         loginPage.login(email, invalidPassword);
 
         String errorMessage = loginPage.getErrorMessage();
-        Assert.assertEquals(errorMessage, "There was a problem with your login and/or errors exist in your form.",
+        Assert.assertEquals(errorMessage, "Invalid username or password. Please try again.",
                 "Error message is not displayed correctly");
     }
 }
