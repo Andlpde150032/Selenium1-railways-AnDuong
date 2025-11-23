@@ -19,14 +19,18 @@ public class LoginPageTest_TC05 extends BaseTest {
         String email = JsonReader.getData("login", "email");
         String invalidPassword = "InvalidPassword123";
 
-        // Repeat login 4 times
-        for (int i = 0; i < 4; i++) {
-            loginPage.login(email, invalidPassword);
-        }
+        // Perform 4 failed login attempts
+        performMultipleLoginAttempts(loginPage, email, invalidPassword, 4);
 
         String errorMessage = loginPage.getErrorMessage();
         Assert.assertEquals(errorMessage,
                 "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.",
                 "Error message is not displayed correctly");
+    }
+
+    private void performMultipleLoginAttempts(LoginPage loginPage, String username, String password, int attempts) {
+        for (int i = 0; i < attempts; i++) {
+            loginPage.login(username, password);
+        }
     }
 }
