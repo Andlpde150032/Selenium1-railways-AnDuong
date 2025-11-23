@@ -18,9 +18,9 @@ public class ChangePasswordTest_TC09 extends BaseTest {
         // Pre-condition: Create a new account
         RegisterPage registerPage = homePage.goToRegisterPage();
         String email = "tc09user" + System.currentTimeMillis() + "@gmail.com";
-        String password = "Password123";
-        String newPassword = "NewPassword123";
-        String pid = "123456789";
+        String password = com.company.project.utils.JsonReader.getData("TC09", "password");
+        String newPassword = com.company.project.utils.JsonReader.getData("TC09", "newPassword");
+        String pid = com.company.project.utils.JsonReader.getData("TC09", "pid");
         registerPage.register(email, password, password, pid);
 
         // Login with the newly created account
