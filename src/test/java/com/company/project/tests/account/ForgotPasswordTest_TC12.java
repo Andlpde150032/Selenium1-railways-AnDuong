@@ -28,15 +28,17 @@ public class ForgotPasswordTest_TC12 extends BaseTest {
         ForgotPasswordPage forgotPasswordPage = loginPage.goToForgotPasswordPage();
 
         // Enter email and click Send Instructions
-        // Note: This step is known to cause a server crash. We proceed anyway.
+        // Note: This step is known to cause a server crash (SMTP error).
+        // We proceed with the test by manually navigating to the reset page
+        // to verify the blank token scenario, effectively bypassing the crash.
         try {
             forgotPasswordPage.sendInstructions(email);
         } catch (Exception e) {
-            // Ignore potential crash or timeout here as we will manually navigate next
+            // Ignore potential crash or timeout here
         }
 
-        // Navigate directly to Password Reset page with blank token to simulate the
-        // scenario
+        // WORKAROUND: Navigate directly to Password Reset page with blank token
+        // because the email cannot be sent due to server error.
         homePage.getDriver().get("http://railwayb2.somee.com/Account/PasswordReset?resetToken=");
         PasswordResetPage passwordResetPage = new PasswordResetPage();
 
