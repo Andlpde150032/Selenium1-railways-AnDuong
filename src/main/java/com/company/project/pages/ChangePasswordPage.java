@@ -10,7 +10,7 @@ public class ChangePasswordPage extends BasePage {
     private final By newPasswordInput = By.id("newPassword");
     private final By confirmPasswordInput = By.id("confirmPassword");
     private final By changePasswordButton = By.cssSelector("input[title='Change password']");
-    private final By successMessage = By.cssSelector("p.message.success");
+    private final By successMessage = By.xpath("//p[@class='message success']");
 
     public String getPageTitle() {
         return getDriver().getTitle();
