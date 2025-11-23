@@ -2,5 +2,12 @@
   "login": {
     "email": "AdminAn@gmail.com",
     "password": "Admin12345"
+  },
+  "TC14": {
+    "departDate": "12/1/2025",
+    "departFrom": "Sài Gòn",
+    "arriveAt": "Nha Trang",
+    "seatType": "Soft bed with air conditioner",
+    "ticketAmount": "1"
   }
 }

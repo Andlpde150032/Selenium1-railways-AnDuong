@@ -61,4 +61,16 @@ public class BasePage {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
+
+    protected void selectDropdown(By locator, String visibleText) {
+        WebElement element = waitForElementVisible(locator);
+        scrollToElement(element);
+        org.openqa.selenium.support.ui.Select select = new org.openqa.selenium.support.ui.Select(element);
+        select.selectByVisibleText(visibleText);
+    }
+
+    protected void scroll(By locator) {
+        WebElement element = getDriver().findElement(locator);
+        scrollToElement(element);
+    }
 }

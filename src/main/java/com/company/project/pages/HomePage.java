@@ -21,8 +21,9 @@ public class HomePage extends BasePage {
         return new LoginPage();
     }
 
-    public void clickBookTicketTab() {
+    public BookTicketPage goToBookTicketPage() {
         click(bookTicketTab);
+        return new BookTicketPage();
     }
 
     public boolean isMyTicketTabDisplayed() {
