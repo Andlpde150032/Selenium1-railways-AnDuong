@@ -35,13 +35,24 @@ public class BookTicketPage extends BasePage {
         click(bookTicketButton);
     }
 
-    public void bookTicket(String date, String departFrom, String arriveAt, String seatType, String amount) {
-        selectDepartDate(date);
-        selectDepartFrom(departFrom);
-        selectArriveAt(arriveAt);
-        selectSeatType(seatType);
-        selectTicketAmount(amount);
+    public void bookTicket(String departDate, String departFrom, String arriveAt, String seatType,
+            String ticketAmount) {
+        selectDropdown(departDateSelect, departDate);
+        selectDropdown(departFromSelect, departFrom);
+        selectDropdown(arriveAtSelect, arriveAt);
+        selectDropdown(seatTypeSelect, seatType);
+        selectDropdown(ticketAmountSelect, ticketAmount);
         scroll(bookTicketButton);
-        clickBookTicket();
+        click(bookTicketButton);
+    }
+
+    public String getSelectedDepartStation() {
+        return new org.openqa.selenium.support.ui.Select(getDriver().findElement(departFromSelect))
+                .getFirstSelectedOption().getText();
+    }
+
+    public String getSelectedArriveStation() {
+        return new org.openqa.selenium.support.ui.Select(getDriver().findElement(arriveAtSelect))
+                .getFirstSelectedOption().getText();
     }
 }

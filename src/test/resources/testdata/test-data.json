@@ -7,5 +7,11 @@
     "arriveAt": "Nha Trang",
     "seatType": "Soft bed with air conditioner",
     "ticketAmount": "1"
+  },
+  "TC15": {
+    "loginEmail": "AdminAn@gmail.com",
+    "loginPassword": "Admin12345",
+    "departFrom": "Huế",
+    "arriveAt": "Sài Gòn"
   }
 }

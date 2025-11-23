@@ -26,6 +26,11 @@ public class HomePage extends BasePage {
         return new BookTicketPage();
     }
 
+    public TimetablePage goToTimetablePage() {
+        click(By.linkText("Timetable"));
+        return new TimetablePage();
+    }
+
     public boolean isMyTicketTabDisplayed() {
         try {
             return getDriver().findElement(myTicketTab).isDisplayed();
