@@ -9,7 +9,7 @@ public class HomePage extends BasePage {
     private final By bookTicketTab = By.xpath("//span[contains(text(),'Book ticket')]");
     private final By myTicketTab = By.xpath("//span[contains(text(),'My ticket')]");
     private final By changePasswordTab = By.xpath("//span[contains(text(),'Change password')]");
-    private final By logoutTab = By.xpath("//span[contains(text(),'Logout')]");
+    private final By logoutTab = By.xpath("//span[contains(text(),'Log out')]");
 
     public void open() {
         getDriver().get(PropertiesLoader.getProperty("base.url"));
