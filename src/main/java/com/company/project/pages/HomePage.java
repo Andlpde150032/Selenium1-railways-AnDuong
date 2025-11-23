@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 public class HomePage extends BasePage {
 
     private final By loginTab = By.xpath("//span[contains(text(),'Login')]");
+    private final By registerTab = By.xpath("//span[contains(text(),'Register')]");
     private final By bookTicketTab = By.xpath("//span[contains(text(),'Book ticket')]");
     private final By myTicketTab = By.xpath("//span[contains(text(),'My ticket')]");
     private final By changePasswordTab = By.xpath("//span[contains(text(),'Change password')]");
@@ -56,5 +57,10 @@ public class HomePage extends BasePage {
     public ChangePasswordPage goToChangePasswordPage() {
         click(changePasswordTab);
         return new ChangePasswordPage();
+    }
+
+    public RegisterPage goToRegisterPage() {
+        click(registerTab);
+        return new RegisterPage();
     }
 }
