@@ -11,7 +11,7 @@ import java.time.Duration;
 
 public class BasePage {
 
-    protected WebDriver getDriver() {
+    public WebDriver getDriver() {
         return DriverManager.getDriver();
     }
 
