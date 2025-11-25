@@ -1,3 +1,4 @@
+
 package com.company.project.utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -6,6 +7,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function JsonReader - Utility to read JSON test data
+ */
 public class JsonReader {
     private static final String TEST_DATA_PATH = "src/test/resources/testdata/test-data.json";
     private static JsonNode rootNode;
