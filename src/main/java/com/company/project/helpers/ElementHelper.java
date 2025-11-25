@@ -3,6 +3,7 @@ package com.company.project.helpers;
 
 import com.company.project.drivers.DriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -26,8 +27,8 @@ public class ElementHelper {
     }
 
     public static void scrollToElement(WebElement element) {
-        Actions actions = new Actions(getDriver());
-        actions.scrollToElement(element).perform();
+        org.openqa.selenium.interactions.WheelInput.ScrollOrigin scrollOrigin = org.openqa.selenium.interactions.WheelInput.ScrollOrigin.fromElement(element);
+        new Actions(getDriver()).scrollFromOrigin(scrollOrigin, 0, 200).perform();
     }
 
     public static WebElement waitForElementVisible(By locator) {
@@ -41,9 +42,14 @@ public class ElementHelper {
     }
 
     public static void click(By locator) {
-        WebElement element = waitForElementClickable(locator);
-        scrollToElement(element);
-        element.click();
+        try {
+            waitForElementClickable(locator).click();
+        } catch (org.openqa.selenium.ElementClickInterceptedException e) {
+            WebElement element = waitForElementVisible(locator);
+            org.openqa.selenium.interactions.WheelInput.ScrollOrigin scrollOrigin = org.openqa.selenium.interactions.WheelInput.ScrollOrigin.fromElement(element);
+            new Actions(getDriver()).scrollFromOrigin(scrollOrigin, 0, 200).perform();
+            element.click();
+        }
     }
 
     public static void enterText(By locator, String text) {
