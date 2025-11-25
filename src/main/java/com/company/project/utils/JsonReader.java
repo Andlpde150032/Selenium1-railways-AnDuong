@@ -1,3 +1,9 @@
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function JsonReader - Utility to read JSON test data
+ */
 package com.company.project.utils;
 
 import com.fasterxml.jackson.databind.JsonNode;

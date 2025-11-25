@@ -1,3 +1,9 @@
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function LoginPage - Page object for Login Page
+ */
 package com.company.project.pages;
 
 import org.openqa.selenium.By;

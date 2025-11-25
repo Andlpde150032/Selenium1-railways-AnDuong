@@ -1,4 +1,11 @@
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function HomePage - Page object for Home Page
+ */
 package com.company.project.pages;
+
 import com.company.project.config.PropertiesLoader;
 import org.openqa.selenium.By;
 

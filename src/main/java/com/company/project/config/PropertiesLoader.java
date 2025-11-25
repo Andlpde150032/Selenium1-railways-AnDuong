@@ -1,3 +1,9 @@
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function PropertiesLoader - Load configuration properties
+ */
 package com.company.project.config;
 
 import java.io.IOException;

@@ -1,3 +1,9 @@
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function LoginTest - Test class for Login functionality
+ */
 package com.company.project.tests.auth;
 
 import com.company.project.base.BaseTest;

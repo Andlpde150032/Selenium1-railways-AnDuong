@@ -1,3 +1,9 @@
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function DriverManager - Manage WebDriver instances
+ */
 package com.company.project.drivers;
 
 import org.openqa.selenium.WebDriver;

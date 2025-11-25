@@ -1,3 +1,9 @@
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function ElementHelper - Helper class for WebElement actions
+ */
 package com.company.project.helpers;
 
 import com.company.project.drivers.DriverManager;

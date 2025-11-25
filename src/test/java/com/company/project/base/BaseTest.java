@@ -1,3 +1,9 @@
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function BaseTest - Base class for all tests
+ */
 package com.company.project.base;
 
 import com.company.project.config.PropertiesLoader;
