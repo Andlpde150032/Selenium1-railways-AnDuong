@@ -1,64 +1,42 @@
+
 package com.company.project.pages;
 
 import com.company.project.drivers.DriverManager;
+import com.company.project.helpers.ElementHelper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function BasePage - Base class for all page objects
+ */
 public class BasePage {
 
     public WebDriver getDriver() {
         return DriverManager.getDriver();
     }
 
-    public void scrollToElement(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) getDriver();
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
-    }
-
     protected void click(By locator) {
-        WebElement element = waitForElementClickable(locator);
-        scrollToElement(element);
-        element.click();
+        ElementHelper.click(locator);
     }
 
     protected void enterText(By locator, String text) {
-        WebElement element = waitForElementVisible(locator);
-        scrollToElement(element);
-        element.clear();
-        element.sendKeys(text);
+        ElementHelper.enterText(locator, text);
     }
 
     protected String getText(By locator) {
-        try {
-            getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
-            java.util.List<WebElement> elements = getDriver().findElements(locator);
-            getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-            if (elements.isEmpty()) {
-                return "";
-            }
-
-            WebElement element = elements.get(0);
-            scrollToElement(element);
-            return element.getText();
-        } catch (Exception e) {
-            return "";
-        }
+        return ElementHelper.getText(locator);
     }
 
-    protected WebElement waitForElementVisible(By locator) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    protected void selectDropdown(By locator, String visibleText) {
+        ElementHelper.selectDropdown(locator, visibleText);
     }
 
-    protected WebElement waitForElementClickable(By locator) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    protected void scroll(By locator) {
+        WebElement element = getDriver().findElement(locator);
+        ElementHelper.scrollToElement(element);
     }
 }

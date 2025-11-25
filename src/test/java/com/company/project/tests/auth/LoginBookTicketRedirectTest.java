@@ -1,3 +1,9 @@
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function LoginBookTicketRedirectTest - Test class for Login redirection from Book Ticket
+ */
 package com.company.project.tests.auth;
 
 import com.company.project.base.BaseTest;
@@ -5,10 +11,10 @@ import com.company.project.pages.HomePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginPageTest_TC04 extends BaseTest {
+public class LoginBookTicketRedirectTest extends BaseTest {
 
     @Test(description = "Login page displays when un-logged User clicks on 'Book ticket' tab")
-    public void TC04() {
+    public void testLoginRedirectFromBookTicket() {
         HomePage homePage = new HomePage();
         homePage.open();
 
@@ -17,8 +23,6 @@ public class LoginPageTest_TC04 extends BaseTest {
         String currentUrl = homePage.getDriver().getCurrentUrl();
         Assert.assertTrue(currentUrl.contains("Login.cshtml"), "User is not redirected to Login page");
 
-        // Verify title or other elements if needed, but URL check is a strong indicator
-        // for redirection
         String pageTitle = homePage.getDriver().getTitle();
         Assert.assertEquals(pageTitle, "Safe Railway - Login", "Page title is incorrect");
     }
