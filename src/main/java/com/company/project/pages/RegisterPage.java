@@ -16,8 +16,8 @@ public class RegisterPage extends BasePage {
     private final By pidInput = By.id("pid");
     private final By registerButton = By.cssSelector("input[title='Register']");
     private final By successMessage = By.xpath("//div[@id='content']/p");
-    private final By mainErrorMessage = By.cssSelector(".message.error");
-    private final By confirmPasswordErrorMessage = By.cssSelector("label[for='confirmPassword'].error");
+    private final By mainErrorMessage = By.xpath("//*[contains(text(), \"There're errors in the form\")]");
+    private final By confirmPasswordErrorMessage = By.cssSelector("label.validation-error");
 
     public void register(String email, String password, String confirmPassword, String pid) {
         enterText(emailInput, email);
