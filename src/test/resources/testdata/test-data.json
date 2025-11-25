@@ -2,5 +2,16 @@
   "login": {
     "email": "AdminAn@gmail.com",
     "password": "Admin12345"
+  },
+  "booking": {
+    "date": "12/5/2025",
+    "departFrom": "Sài Gòn",
+    "arriveAt": "Nha Trang",
+    "seatType": "Soft bed with air conditioner",
+    "amount": "1"
+  },
+  "registration": {
+    "password": "Password123",
+    "pid": "123456789"
   }
 }

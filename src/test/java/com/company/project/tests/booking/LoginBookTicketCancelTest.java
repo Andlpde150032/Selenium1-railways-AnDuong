@@ -1,6 +1,8 @@
 package com.company.project.tests.booking;
 
 import com.company.project.base.BaseTest;
+import com.company.project.models.Registration;
+import com.company.project.models.Ticket;
 import com.company.project.pages.BookTicketPage;
 import com.company.project.pages.HomePage;
 import com.company.project.pages.LoginPage;
@@ -19,32 +21,34 @@ import java.util.Random;
  */
 public class LoginBookTicketCancelTest extends BaseTest {
 
-    @Test
+    @Test(description = "TC16: User can cancel a ticket")
     public void TC16() {
         HomePage homePage = new HomePage();
         homePage.open();
 
+        // Get test data from JSON
+        Registration regData = Registration.getRegistrationData();
+        Ticket ticketData = Ticket.getBookingData();
+
         // 1. Register a new account
         RegisterPage registerPage = homePage.goToRegisterPage();
         String email = "auto_test_" + new Random().nextInt(10000) + "@gmail.com";
-        String password = "Password123";
-        String pid = "123456789";
-        registerPage.register(email, password, password, pid);
+        registerPage.register(email, regData.getPassword(), regData.getPassword(), regData.getPid());
 
         // 2. Login with the new account
         LoginPage loginPage = homePage.goToLoginPage();
-        loginPage.login(email, password);
+        loginPage.login(email, regData.getPassword());
 
         // 3. Navigate to Book Ticket
         BookTicketPage bookTicketPage = homePage.goToBookTicketPage();
 
         // 4. Book a ticket
-        String date = "12/5/2025"; // Ensure this date is valid in the dropdown
-        String departFrom = "Sài Gòn";
-        String arriveAt = "Nha Trang";
-        String seatType = "Soft bed with air conditioner";
-        String amount = "1";
-        bookTicketPage.bookTicket(date, departFrom, arriveAt, seatType, amount);
+        bookTicketPage.bookTicket(
+                ticketData.getDate(),
+                ticketData.getDepartFrom(),
+                ticketData.getArriveAt(),
+                ticketData.getSeatType(),
+                ticketData.getAmount());
 
         // 5. Verify success
         Assert.assertEquals(bookTicketPage.getSuccessMessage(), "Ticket Booked Successfully!", "Booking failed!");
