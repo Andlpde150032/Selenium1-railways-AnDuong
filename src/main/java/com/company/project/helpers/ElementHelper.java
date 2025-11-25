@@ -27,7 +27,8 @@ public class ElementHelper {
     }
 
     public static void scrollToElement(WebElement element) {
-        org.openqa.selenium.interactions.WheelInput.ScrollOrigin scrollOrigin = org.openqa.selenium.interactions.WheelInput.ScrollOrigin.fromElement(element);
+        org.openqa.selenium.interactions.WheelInput.ScrollOrigin scrollOrigin = org.openqa.selenium.interactions.WheelInput.ScrollOrigin
+                .fromElement(element);
         new Actions(getDriver()).scrollFromOrigin(scrollOrigin, 0, 200).perform();
     }
 
@@ -46,7 +47,8 @@ public class ElementHelper {
             waitForElementClickable(locator).click();
         } catch (org.openqa.selenium.ElementClickInterceptedException e) {
             WebElement element = waitForElementVisible(locator);
-            org.openqa.selenium.interactions.WheelInput.ScrollOrigin scrollOrigin = org.openqa.selenium.interactions.WheelInput.ScrollOrigin.fromElement(element);
+            org.openqa.selenium.interactions.WheelInput.ScrollOrigin scrollOrigin = org.openqa.selenium.interactions.WheelInput.ScrollOrigin
+                    .fromElement(element);
             new Actions(getDriver()).scrollFromOrigin(scrollOrigin, 0, 200).perform();
             element.click();
         }
@@ -78,9 +80,22 @@ public class ElementHelper {
     }
 
     public static void selectDropdown(By locator, String visibleText) {
-        WebElement element = waitForElementVisible(locator);
-        scrollToElement(element);
-        Select select = new Select(element);
-        select.selectByVisibleText(visibleText);
+        for (int i = 0; i < 3; i++) {
+            try {
+                WebElement element = waitForElementVisible(locator);
+                scrollToElement(element);
+                Select select = new Select(element);
+                select.selectByVisibleText(visibleText);
+                return;
+            } catch (org.openqa.selenium.StaleElementReferenceException e) {
+                // Retry
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        throw new RuntimeException("Failed to select dropdown option after retries: " + visibleText);
     }
 }
