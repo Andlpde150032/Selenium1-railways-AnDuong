@@ -11,14 +11,18 @@ public class PropertiesLoader {
         try (InputStream input = PropertiesLoader.class.getClassLoader().getResourceAsStream("config.properties")) {
             if (input == null) {
                 System.out.println("Sorry, unable to find config.properties");
+            } else {
+                properties.load(input);
             }
-            properties.load(input);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
     public static String getProperty(String key) {
+        if (key == null) {
+            return null;
+        }
         return properties.getProperty(key);
     }
 }

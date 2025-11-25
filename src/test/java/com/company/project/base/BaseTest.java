@@ -7,13 +7,17 @@ import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
 
-    @BeforeMethod
+    @org.testng.annotations.BeforeClass
     public void setUp() {
         String implicitWait = PropertiesLoader.getProperty("implicit.wait");
-        DriverManager.initDriver(implicitWait);
+        String browser = PropertiesLoader.getProperty("browser");
+        if (browser == null) {
+            browser = "chrome"; // Default to chrome if not specified
+        }
+        DriverManager.initDriver(browser, implicitWait);
     }
 
-    @AfterMethod
+    @org.testng.annotations.AfterClass
     public void tearDown() {
         DriverManager.quitDriver();
     }

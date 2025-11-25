@@ -1,27 +1,27 @@
 package com.company.project.tests.auth;
 
 import com.company.project.base.BaseTest;
+import com.company.project.models.User;
 import com.company.project.pages.HomePage;
 import com.company.project.pages.LoginPage;
 import com.company.project.utils.JsonReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginPageTest_TC01 extends BaseTest {
+public class LoginTest extends BaseTest {
 
     @Test(description = "User can log into Railway with valid username and password")
-    public void TC01() {
+    public void testLoginWithValidCredentials() {
         HomePage homePage = new HomePage();
         homePage.open();
 
         LoginPage loginPage = homePage.goToLoginPage();
 
-        String email = JsonReader.getData("login", "email");
-        String password = JsonReader.getData("login", "password");
+        User user = User.getValidUser();
 
-        loginPage.login(email, password);
+        loginPage.login(user.getEmail(), user.getPassword());
 
         String welcomeMessage = loginPage.getWelcomeMessage();
-        Assert.assertEquals(welcomeMessage, "Welcome " + email, "Welcome message is not displayed correctly");
+        Assert.assertEquals(welcomeMessage, "Welcome " + user.getEmail(), "Welcome message is not displayed correctly");
     }
 }
