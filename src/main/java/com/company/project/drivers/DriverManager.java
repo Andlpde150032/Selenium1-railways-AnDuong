@@ -1,3 +1,4 @@
+
 package com.company.project.drivers;
 
 import org.openqa.selenium.WebDriver;
@@ -6,16 +7,35 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function DriverManager - Manage WebDriver instances
+ */
 public class DriverManager {
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public static void initDriver(String implicitWait) {
+    public static void initDriver(String browser, String implicitWait) {
         if (driver.get() == null) {
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--remote-allow-origins=*");
-            options.addArguments("--start-maximized");
+            WebDriver webDriver;
+            switch (browser.toLowerCase()) {
+                case "chrome":
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.addArguments("--remote-allow-origins=*");
+                    chromeOptions.addArguments("--start-maximized");
+                    webDriver = new ChromeDriver(chromeOptions);
+                    break;
+                case "firefox":
+                    webDriver = new org.openqa.selenium.firefox.FirefoxDriver();
+                    break;
+                case "edge":
+                    webDriver = new org.openqa.selenium.edge.EdgeDriver();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Browser \"" + browser + "\" is not supported.");
+            }
 
-            WebDriver webDriver = new ChromeDriver(options);
             webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(implicitWait)));
             webDriver.manage().window().maximize();
             driver.set(webDriver);

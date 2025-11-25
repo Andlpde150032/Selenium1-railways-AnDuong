@@ -1,26 +1,32 @@
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function LoginMultipleWrongPasswordTest - Test class for Login with multiple wrong passwords
+ */
 package com.company.project.tests.auth;
 
 import com.company.project.base.BaseTest;
+import com.company.project.models.User;
 import com.company.project.pages.HomePage;
 import com.company.project.pages.LoginPage;
-import com.company.project.utils.JsonReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginPageTest_TC05 extends BaseTest {
+public class LoginMultipleWrongPasswordTest extends BaseTest {
 
     @Test(description = "System shows message when user enters wrong password several times")
-    public void TC05() {
+    public void testLoginWithMultipleWrongPasswords() {
         HomePage homePage = new HomePage();
         homePage.open();
 
         LoginPage loginPage = homePage.goToLoginPage();
 
-        String email = JsonReader.getData("login", "email");
+        User user = User.getValidUser();
         String invalidPassword = "InvalidPassword123";
 
         // Perform 4 failed login attempts
-        performMultipleLoginAttempts(loginPage, email, invalidPassword, 4);
+        performMultipleLoginAttempts(loginPage, user.getEmail(), invalidPassword, 4);
 
         String errorMessage = loginPage.getErrorMessage();
         Assert.assertEquals(errorMessage,
