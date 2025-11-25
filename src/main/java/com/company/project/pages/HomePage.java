@@ -32,4 +32,9 @@ public class HomePage extends BasePage {
         click(registerTab);
         return new RegisterPage();
     }
+
+    public ChangePasswordPage goToChangePasswordPage() {
+        click(changePasswordTab);
+        return new ChangePasswordPage();
+    }
 }
