@@ -1,18 +1,22 @@
+
 package com.company.project.pages;
 
 import com.company.project.drivers.DriverManager;
+import com.company.project.helpers.ElementHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function BasePage - Base class for all page objects
+ */
 public class BasePage {
 
-    protected WebDriver getDriver() {
+    public WebDriver getDriver() {
         return DriverManager.getDriver();
     }
 
@@ -22,6 +26,7 @@ public class BasePage {
     }
 
     protected void click(By locator) {
+<<<<<<< HEAD
         WebElement element = waitForElementClickable(locator);
         scrollToElement(element);
         element.click();
@@ -42,15 +47,25 @@ public class BasePage {
         } catch (Exception e) {
             return "";
         }
+=======
+        ElementHelper.click(locator);
     }
 
-    protected WebElement waitForElementVisible(By locator) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    protected void enterText(By locator, String text) {
+        ElementHelper.enterText(locator, text);
     }
 
-    protected WebElement waitForElementClickable(By locator) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    protected String getText(By locator) {
+        return ElementHelper.getText(locator);
+>>>>>>> TC01-Login
+    }
+
+    protected void selectDropdown(By locator, String visibleText) {
+        ElementHelper.selectDropdown(locator, visibleText);
+    }
+
+    protected void scroll(By locator) {
+        WebElement element = getDriver().findElement(locator);
+        ElementHelper.scrollToElement(element);
     }
 }
