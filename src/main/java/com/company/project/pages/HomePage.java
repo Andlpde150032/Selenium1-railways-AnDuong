@@ -27,4 +27,19 @@ public class HomePage extends BasePage {
         click(loginTab);
         return new LoginPage();
     }
+
+    public RegisterPage goToRegisterPage() {
+        click(registerTab);
+        return new RegisterPage();
+    }
+
+    public BookTicketPage goToBookTicketPage() {
+        click(bookTicketTab);
+        return new BookTicketPage();
+    }
+
+    public MyTicketPage goToMyTicketPage() {
+        click(myTicketTab);
+        return new MyTicketPage();
+    }
 }

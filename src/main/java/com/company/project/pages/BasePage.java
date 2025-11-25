@@ -39,4 +39,8 @@ public class BasePage {
         WebElement element = getDriver().findElement(locator);
         ElementHelper.scrollToElement(element);
     }
+
+    protected void scrollToElement(By locator) {
+        scroll(locator);
+    }
 }
