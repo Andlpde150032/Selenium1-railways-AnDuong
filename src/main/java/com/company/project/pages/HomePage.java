@@ -50,16 +50,6 @@ public class HomePage extends BasePage {
         }
     }
 
-    public MyTicketPage goToMyTicketPage() {
-        click(myTicketTab);
-        return new MyTicketPage();
-    }
-
-    public ChangePasswordPage goToChangePasswordPage() {
-        click(changePasswordTab);
-        return new ChangePasswordPage();
-    }
-
     public RegisterPage goToRegisterPage() {
         click(registerTab);
         return new RegisterPage();

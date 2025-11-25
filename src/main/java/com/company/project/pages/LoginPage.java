@@ -24,8 +24,4 @@ public class LoginPage extends BasePage {
         return getText(errorMessage);
     }
 
-    public ForgotPasswordPage goToForgotPasswordPage() {
-        click(By.linkText("Forgot Password page"));
-        return new ForgotPasswordPage();
-    }
 }
