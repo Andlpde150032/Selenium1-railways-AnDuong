@@ -22,7 +22,7 @@ import java.util.Random;
 public class LoginBookTicketCancelTest extends BaseTest {
 
     @Test
-    public void TC16() {
+    public void testUserCanCancelTicket() {
         HomePage homePage = new HomePage();
         homePage.open();
 
