@@ -16,6 +16,8 @@ public class RegisterPage extends BasePage {
     private final By pidInput = By.id("pid");
     private final By registerButton = By.cssSelector("input[title='Register']");
     private final By successMessage = By.xpath("//div[@id='content']/p");
+    private final By mainErrorMessage = By.cssSelector(".message.error");
+    private final By confirmPasswordErrorMessage = By.cssSelector("label[for='confirmPassword'].error");
 
     public void register(String email, String password, String confirmPassword, String pid) {
         enterText(emailInput, email);
@@ -27,5 +29,13 @@ public class RegisterPage extends BasePage {
 
     public String getSuccessMessage() {
         return getText(successMessage);
+    }
+
+    public String getMainErrorMessage() {
+        return getText(mainErrorMessage);
+    }
+
+    public String getConfirmPasswordErrorMessage() {
+        return getText(confirmPasswordErrorMessage);
     }
 }
