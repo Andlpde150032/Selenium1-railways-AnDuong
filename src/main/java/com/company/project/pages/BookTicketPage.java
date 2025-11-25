@@ -1,6 +1,12 @@
 package com.company.project.pages;
 
+import com.company.project.drivers.DriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
+import java.util.Random;
 
 /**
  * @author AnDuong
@@ -28,8 +34,28 @@ public class BookTicketPage extends BasePage {
         clickBookTicket();
     }
 
+    public void bookTicketWithRandomDate(String departFrom, String arriveAt, String seatType, String amount) {
+        selectRandomDepartDate();
+        selectDepartFrom(departFrom);
+        selectArriveAt(arriveAt);
+        selectSeatType(seatType);
+        selectTicketAmount(amount);
+        scrollToElement(bookTicketButton);
+        clickBookTicket();
+    }
+
     public void selectDepartDate(String date) {
         selectDropdown(departDateSelect, date);
+    }
+
+    public void selectRandomDepartDate() {
+        WebElement dateDropdown = DriverManager.getDriver().findElement(departDateSelect);
+        Select select = new Select(dateDropdown);
+        List<WebElement> options = select.getOptions();
+
+        // Skip the first option (usually a placeholder like "Select date")
+        int randomIndex = new Random().nextInt(options.size() - 1) + 1;
+        select.selectByIndex(randomIndex);
     }
 
     public void selectDepartFrom(String departFrom) {

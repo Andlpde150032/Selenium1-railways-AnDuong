@@ -21,7 +21,7 @@ import java.util.Random;
  */
 public class LoginBookTicketCancelTest extends BaseTest {
 
-    @Test(description = "TC16: User can cancel a ticket")
+    @Test
     public void TC16() {
         HomePage homePage = new HomePage();
         homePage.open();
@@ -42,9 +42,8 @@ public class LoginBookTicketCancelTest extends BaseTest {
         // 3. Navigate to Book Ticket
         BookTicketPage bookTicketPage = homePage.goToBookTicketPage();
 
-        // 4. Book a ticket
-        bookTicketPage.bookTicket(
-                ticketData.getDate(),
+        // 4. Book a ticket with random date
+        bookTicketPage.bookTicketWithRandomDate(
                 ticketData.getDepartFrom(),
                 ticketData.getArriveAt(),
                 ticketData.getSeatType(),

@@ -10,9 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @function Ticket - Model for ticket booking data
  */
 public class Ticket {
-    @JsonProperty("date")
-    private String date;
-
     @JsonProperty("departFrom")
     private String departFrom;
 
@@ -24,14 +21,6 @@ public class Ticket {
 
     @JsonProperty("amount")
     private String amount;
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
 
     public String getDepartFrom() {
         return departFrom;
