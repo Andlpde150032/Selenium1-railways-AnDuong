@@ -37,6 +37,9 @@ public class LoginMultipleWrongPasswordTest extends BaseTest {
     private void performMultipleLoginAttempts(LoginPage loginPage, String username, String password, int attempts) {
         for (int i = 0; i < attempts; i++) {
             loginPage.login(username, password);
+            String errorMessage = loginPage.getErrorMessage();
+            Assert.assertEquals(errorMessage, "Invalid username or password. Please try again.",
+                    "Error message mismatch at attempt " + (i + 1));
         }
     }
 }
