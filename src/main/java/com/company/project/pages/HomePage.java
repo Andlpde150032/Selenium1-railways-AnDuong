@@ -18,6 +18,7 @@ public class HomePage extends BasePage {
     private final By myTicketTab = By.xpath("//a[contains(@href, 'ManageTicket.cshtml')]");
     private final By changePasswordTab = By.xpath("//a[contains(@href, 'ChangePassword.cshtml')]");
     private final By logoutTab = By.xpath("//a[contains(@href, 'Logout')]");
+    private final By timetableTab = By.xpath("//a[contains(@href, 'TrainTimeListPage.cshtml')]");
 
     public void open() {
         getDriver().get(PropertiesLoader.getProperty("base.url"));
@@ -41,5 +42,10 @@ public class HomePage extends BasePage {
     public BookTicketPage goToBookTicketPage() {
         click(bookTicketTab);
         return new BookTicketPage();
+    }
+
+    public TimetablePage goToTimetablePage() {
+        click(timetableTab);
+        return new TimetablePage();
     }
 }
