@@ -37,4 +37,9 @@ public class HomePage extends BasePage {
         click(changePasswordTab);
         return new ChangePasswordPage();
     }
+
+    public BookTicketPage goToBookTicketPage() {
+        click(bookTicketTab);
+        return new BookTicketPage();
+    }
 }
