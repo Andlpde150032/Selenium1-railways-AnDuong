@@ -1,9 +1,4 @@
-/**
- * @author AnDuong
- * @date 2025-11-25
- * @project Selenium1-railways-AnDuong
- * @function BasePage - Base class for all page objects
- */
+
 package com.company.project.pages;
 
 import com.company.project.drivers.DriverManager;
@@ -12,6 +7,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function BasePage - Base class for all page objects
+ */
 public class BasePage {
 
     public WebDriver getDriver() {

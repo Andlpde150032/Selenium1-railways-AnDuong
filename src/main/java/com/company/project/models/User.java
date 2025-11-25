@@ -1,13 +1,14 @@
+
+package com.company.project.models;
+
+import com.company.project.utils.JsonReader;
+
 /**
  * @author AnDuong
  * @date 2025-11-25
  * @project Selenium1-railways-AnDuong
  * @function User - User data model
  */
-package com.company.project.models;
-
-import com.company.project.utils.JsonReader;
-
 public class User {
     private String email;
     private String password;

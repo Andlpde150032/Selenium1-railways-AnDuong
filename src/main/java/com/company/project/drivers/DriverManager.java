@@ -1,9 +1,4 @@
-/**
- * @author AnDuong
- * @date 2025-11-25
- * @project Selenium1-railways-AnDuong
- * @function DriverManager - Manage WebDriver instances
- */
+
 package com.company.project.drivers;
 
 import org.openqa.selenium.WebDriver;
@@ -12,6 +7,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function DriverManager - Manage WebDriver instances
+ */
 public class DriverManager {
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 

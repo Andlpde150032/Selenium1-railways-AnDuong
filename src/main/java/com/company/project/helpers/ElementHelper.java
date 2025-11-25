@@ -1,9 +1,4 @@
-/**
- * @author AnDuong
- * @date 2025-11-25
- * @project Selenium1-railways-AnDuong
- * @function ElementHelper - Helper class for WebElement actions
- */
+
 package com.company.project.helpers;
 
 import com.company.project.drivers.DriverManager;
@@ -18,6 +13,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function ElementHelper - Helper class for WebElement actions
+ */
 public class ElementHelper {
 
     private static WebDriver getDriver() {

@@ -1,15 +1,16 @@
-/**
- * @author AnDuong
- * @date 2025-11-25
- * @project Selenium1-railways-AnDuong
- * @function PropertiesLoader - Load configuration properties
- */
+
 package com.company.project.config;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function PropertiesLoader - Load configuration properties
+ */
 public class PropertiesLoader {
     private static Properties properties = new Properties();
 
