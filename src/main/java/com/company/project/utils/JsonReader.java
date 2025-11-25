@@ -29,4 +29,14 @@ public class JsonReader {
     public static String getData(String section, String key) {
         return rootNode.path(section).path(key).asText();
     }
+
+    public static <T> T getTestData(String section, Class<T> clazz) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.treeToValue(rootNode.path(section), clazz);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
