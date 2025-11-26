@@ -60,4 +60,12 @@ public class BookTicketPage extends BasePage {
         ((org.openqa.selenium.JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);",
                 element);
     }
+
+    public String getSelectedDepartStation() {
+        return new Select(getDriver().findElement(departStationSelect)).getFirstSelectedOption().getText();
+    }
+
+    public String getSelectedArriveStation() {
+        return new Select(getDriver().findElement(arriveStationSelect)).getFirstSelectedOption().getText();
+    }
 }
