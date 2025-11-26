@@ -31,4 +31,9 @@ public class HomePage extends BasePage {
     public void clickBookTicketTab() {
         click(bookTicketTab);
     }
+
+    public RegisterPage goToRegisterPage() {
+        click(registerTab);
+        return new RegisterPage();
+    }
 }

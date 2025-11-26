@@ -17,6 +17,8 @@ public class LoginPage extends BasePage {
     private final By welcomeMessage = By.xpath("//div[@class='account']/strong");
     private final By errorMessage = By.xpath("//p[contains(@class, 'message') and contains(@class, 'error')]");
 
+    private final By errorMessage = By.xpath("//p[@class='message errorLoginForm']");
+
     public void login(String username, String password) {
         enterText(usernameInput, username);
         enterText(passwordInput, password);

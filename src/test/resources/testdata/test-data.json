@@ -2,5 +2,9 @@
   "login": {
     "email": "AdminAn@gmail.com",
     "password": "Admin12345"
+  },
+  "register": {
+    "password": "Password123",
+    "pid": "123456789"
   }
 }
