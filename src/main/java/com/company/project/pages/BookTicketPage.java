@@ -28,7 +28,7 @@ public class BookTicketPage extends BasePage {
         selectDropdown(arriveStationSelect, arriveStation);
         selectDropdown(seatTypeSelect, seatType);
         selectDropdown(ticketAmountSelect, amount);
-        scrollToElement(bookTicketButton);
+        scroll(bookTicketButton);
         click(bookTicketButton);
     }
 
@@ -51,14 +51,6 @@ public class BookTicketPage extends BasePage {
         int randomIndex = new Random().nextInt(options.size() - startIndex) + startIndex;
         select.selectByIndex(randomIndex);
         System.out.println("Selected Date: " + options.get(randomIndex).getText());
-    }
-
-    // Helper to scroll to element if it's not visible (sometimes needed for the
-    // button)
-    private void scrollToElement(By locator) {
-        WebElement element = getDriver().findElement(locator);
-        ((org.openqa.selenium.JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);",
-                element);
     }
 
     public String getSelectedDepartStation() {

@@ -26,4 +26,8 @@ public class ChangePasswordPage extends BasePage {
     public String getSuccessMessage() {
         return getText(successMessage);
     }
+
+    public String getPageTitle() {
+        return getDriver().getTitle();
+    }
 }
