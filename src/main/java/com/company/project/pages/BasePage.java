@@ -5,7 +5,6 @@ import com.company.project.drivers.DriverManager;
 import com.company.project.helpers.ElementHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 /**
  * @author AnDuong
@@ -36,8 +35,7 @@ public class BasePage {
     }
 
     protected void scroll(By locator) {
-        WebElement element = getDriver().findElement(locator);
-        ElementHelper.scrollToElement(element);
+        ElementHelper.scrollToElement(locator);
     }
 
     public void openUrl(String url) {
