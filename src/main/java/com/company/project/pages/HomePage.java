@@ -27,4 +27,8 @@ public class HomePage extends BasePage {
         click(loginTab);
         return new LoginPage();
     }
+
+    public void clickBookTicketTab() {
+        click(bookTicketTab);
+    }
 }
