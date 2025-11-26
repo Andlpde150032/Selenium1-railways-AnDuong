@@ -3,7 +3,6 @@ package com.company.project.helpers;
 
 import com.company.project.drivers.DriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -30,6 +29,11 @@ public class ElementHelper {
         org.openqa.selenium.interactions.WheelInput.ScrollOrigin scrollOrigin = org.openqa.selenium.interactions.WheelInput.ScrollOrigin
                 .fromElement(element);
         new Actions(getDriver()).scrollFromOrigin(scrollOrigin, 0, 200).perform();
+    }
+
+    public static void scrollToElement(By locator) {
+        WebElement element = getDriver().findElement(locator);
+        scrollToElement(element);
     }
 
     public static WebElement waitForElementVisible(By locator) {

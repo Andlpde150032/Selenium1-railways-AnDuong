@@ -2,7 +2,6 @@ package com.company.project.pages;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class MyTicketPage extends BasePage {
 
@@ -13,7 +12,7 @@ public class MyTicketPage extends BasePage {
         By cancelButton = By.xpath("//tr[td[text()='" + departStation + "']/following-sibling::td[text()='"
                 + arriveStation + "']]//input[@value='Cancel']");
 
-        scrollToElement(cancelButton);
+        scroll(cancelButton);
         click(cancelButton);
 
         // Handle confirmation alert
@@ -32,9 +31,7 @@ public class MyTicketPage extends BasePage {
         return !getDriver().findElements(ticketRow).isEmpty();
     }
 
-    private void scrollToElement(By locator) {
-        WebElement element = getDriver().findElement(locator);
-        ((org.openqa.selenium.JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);",
-                element);
+    public String getPageTitle() {
+        return getDriver().getTitle();
     }
 }

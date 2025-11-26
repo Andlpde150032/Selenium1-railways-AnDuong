@@ -25,12 +25,8 @@ public class TimetablePage extends BasePage {
                         + "']]//a[contains(@href, 'BookTicketPage.cshtml')]");
 
         // Scroll to element might be needed if the table is long
-        scrollToElement(bookTicketLink);
+        scroll(bookTicketLink);
         click(bookTicketLink);
     }
 
-    private void scrollToElement(By locator) {
-        ((org.openqa.selenium.JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);",
-                getDriver().findElement(locator));
-    }
 }

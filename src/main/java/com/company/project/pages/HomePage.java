@@ -29,6 +29,10 @@ public class HomePage extends BasePage {
         return new LoginPage();
     }
 
+    public void clickBookTicketTab() {
+        click(bookTicketTab);
+    }
+
     public RegisterPage goToRegisterPage() {
         click(registerTab);
         return new RegisterPage();
@@ -52,5 +56,17 @@ public class HomePage extends BasePage {
     public MyTicketPage goToMyTicketPage() {
         click(myTicketTab);
         return new MyTicketPage();
+    }
+
+    public boolean isMyTicketTabDisplayed() {
+        return !getText(myTicketTab).isEmpty();
+    }
+
+    public boolean isChangePasswordTabDisplayed() {
+        return !getText(changePasswordTab).isEmpty();
+    }
+
+    public boolean isLogoutTabDisplayed() {
+        return !getText(logoutTab).isEmpty();
     }
 }
