@@ -7,10 +7,9 @@ import com.company.project.pages.LoginPage;
 import com.company.project.pages.PasswordResetPage;
 import com.company.project.pages.RegisterPage;
 import com.company.project.utils.JsonReader;
+import com.company.project.utils.TestUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.Random;
 
 public class ForgotPasswordTest_TC13 extends BaseTest {
 
@@ -21,7 +20,7 @@ public class ForgotPasswordTest_TC13 extends BaseTest {
 
         // 1. Register a new account
         RegisterPage registerPage = homePage.goToRegisterPage();
-        String randomEmail = "tc13_user_" + new Random().nextInt(100000) + "@example.com";
+        String randomEmail = TestUtils.generateRandomEmail();
         String password = JsonReader.getData("register", "password");
         String pid = JsonReader.getData("register", "pid");
         registerPage.register(randomEmail, password, password, pid);

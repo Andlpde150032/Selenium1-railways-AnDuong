@@ -4,10 +4,9 @@ import com.company.project.base.BaseTest;
 import com.company.project.pages.HomePage;
 import com.company.project.pages.RegisterPage;
 import com.company.project.utils.JsonReader;
+import com.company.project.utils.TestUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.Random;
 
 public class RegisterTest_TC07 extends BaseTest {
 
@@ -18,7 +17,7 @@ public class RegisterTest_TC07 extends BaseTest {
 
         RegisterPage registerPage = homePage.goToRegisterPage();
 
-        String randomEmail = "test_user_" + new Random().nextInt(100000) + "@example.com";
+        String randomEmail = TestUtils.generateRandomEmail();
         String password = JsonReader.getData("register", "password");
         String pid = JsonReader.getData("register", "pid");
 
