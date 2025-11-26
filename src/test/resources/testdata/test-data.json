@@ -6,5 +6,11 @@
   "register": {
     "password": "Password123",
     "pid": "123456789"
+  },
+  "bookTicket": {
+    "departStation": "Sài Gòn",
+    "arriveStation": "Nha Trang",
+    "seatType": "Soft bed with air conditioner",
+    "ticketAmount": "1"
   }
 }
