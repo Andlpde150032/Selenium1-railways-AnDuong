@@ -52,4 +52,9 @@ public class HomePage extends BasePage {
         click(timetableTab);
         return new TimetablePage();
     }
+
+    public MyTicketPage goToMyTicketPage() {
+        click(myTicketTab);
+        return new MyTicketPage();
+    }
 }
