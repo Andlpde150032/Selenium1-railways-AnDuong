@@ -26,8 +26,14 @@ public class ElementHelper {
     }
 
     public static void scrollToElement(WebElement element) {
-        Actions actions = new Actions(getDriver());
-        actions.scrollToElement(element).perform();
+        org.openqa.selenium.interactions.WheelInput.ScrollOrigin scrollOrigin = org.openqa.selenium.interactions.WheelInput.ScrollOrigin
+                .fromElement(element);
+        new Actions(getDriver()).scrollFromOrigin(scrollOrigin, 0, 200).perform();
+    }
+
+    public static void scrollToElement(By locator) {
+        WebElement element = getDriver().findElement(locator);
+        scrollToElement(element);
     }
 
     public static WebElement waitForElementVisible(By locator) {
@@ -41,9 +47,15 @@ public class ElementHelper {
     }
 
     public static void click(By locator) {
-        WebElement element = waitForElementClickable(locator);
-        scrollToElement(element);
-        element.click();
+        try {
+            waitForElementClickable(locator).click();
+        } catch (org.openqa.selenium.ElementClickInterceptedException e) {
+            WebElement element = waitForElementVisible(locator);
+            org.openqa.selenium.interactions.WheelInput.ScrollOrigin scrollOrigin = org.openqa.selenium.interactions.WheelInput.ScrollOrigin
+                    .fromElement(element);
+            new Actions(getDriver()).scrollFromOrigin(scrollOrigin, 0, 200).perform();
+            element.click();
+        }
     }
 
     public static void enterText(By locator, String text) {
@@ -72,9 +84,22 @@ public class ElementHelper {
     }
 
     public static void selectDropdown(By locator, String visibleText) {
-        WebElement element = waitForElementVisible(locator);
-        scrollToElement(element);
-        Select select = new Select(element);
-        select.selectByVisibleText(visibleText);
+        for (int i = 0; i < 3; i++) {
+            try {
+                WebElement element = waitForElementVisible(locator);
+                scrollToElement(element);
+                Select select = new Select(element);
+                select.selectByVisibleText(visibleText);
+                return;
+            } catch (org.openqa.selenium.StaleElementReferenceException e) {
+                // Retry
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        throw new RuntimeException("Failed to select dropdown option after retries: " + visibleText);
     }
 }
