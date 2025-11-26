@@ -6,7 +6,7 @@ import com.company.project.pages.RegisterPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Random;
+import com.company.project.utils.TestUtils;
 
 public class RegisterTest_TC10 extends BaseTest {
 
@@ -17,7 +17,7 @@ public class RegisterTest_TC10 extends BaseTest {
 
         RegisterPage registerPage = homePage.goToRegisterPage();
 
-        String randomEmail = "tc10_user_" + new Random().nextInt(100000) + "@example.com";
+        String randomEmail = TestUtils.generateRandomEmail();
         String password = "Password123";
         String confirmPassword = "Mismatch123";
         String pid = "123456789";
