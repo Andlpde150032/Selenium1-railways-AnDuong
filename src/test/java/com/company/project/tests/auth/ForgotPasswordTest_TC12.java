@@ -1,0 +1,59 @@
+package com.company.project.tests.auth;
+
+import com.company.project.base.BaseTest;
+import com.company.project.pages.ForgotPasswordPage;
+import com.company.project.pages.HomePage;
+import com.company.project.pages.LoginPage;
+import com.company.project.pages.PasswordResetPage;
+import com.company.project.pages.RegisterPage;
+import com.company.project.utils.JsonReader;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import java.util.Random;
+
+public class ForgotPasswordTest_TC12 extends BaseTest {
+
+    @Test(description = "TC12 - Errors display when password reset token is blank")
+    public void TC12_ErrorsDisplayWhenPasswordResetTokenIsBlank() {
+        HomePage homePage = new HomePage();
+        homePage.open();
+
+        // 1. Register a new account
+        RegisterPage registerPage = homePage.goToRegisterPage();
+        String randomEmail = "tc12_user_" + new Random().nextInt(100000) + "@example.com";
+        String password = JsonReader.getData("register", "password");
+        String pid = JsonReader.getData("register", "pid");
+        registerPage.register(randomEmail, password, password, pid);
+
+        // 2. Navigate to Login Page
+        LoginPage loginPage = homePage.goToLoginPage();
+
+        // 3. Click "Forgot Password" link
+        ForgotPasswordPage forgotPasswordPage = loginPage.goToForgotPasswordPage();
+
+        // 4. Enter the registered email
+        // 5. Click "Send Instructions"
+        forgotPasswordPage.sendInstructions(randomEmail);
+
+        // 6. Workaround: Navigate directly to /Account/PasswordReset.cshtml
+        // Since we cannot check email, we assume the link would take us here
+        PasswordResetPage passwordResetPage = new PasswordResetPage();
+        passwordResetPage.openUrl("http://railwayb2.somee.com/Account/PasswordReset.cshtml");
+
+        // 7. Enter new password and confirm password
+        String newPassword = "NewPassword123";
+        // 8. Leave token field empty (passed as empty string)
+        // 9. Click Reset Password
+        passwordResetPage.resetPassword(newPassword, newPassword, "");
+
+        // 10. Assert actual error messages
+        String actualMainError = passwordResetPage.getMainErrorMessage();
+        String expectedMainError = "Could not reset password. Please correct the errors and try again.";
+        Assert.assertEquals(actualMainError, expectedMainError, "Main error message does not match!");
+
+        String actualTokenError = passwordResetPage.getTokenErrorMessage();
+        String expectedTokenError = "Please enter your password reset token. It should have been sent to you in an email.";
+        Assert.assertEquals(actualTokenError, expectedTokenError, "Token error message does not match!");
+    }
+}

@@ -39,4 +39,8 @@ public class BasePage {
         WebElement element = getDriver().findElement(locator);
         ElementHelper.scrollToElement(element);
     }
+
+    public void openUrl(String url) {
+        getDriver().get(url);
+    }
 }
