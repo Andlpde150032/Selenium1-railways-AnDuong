@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
  * @project Selenium1-railways-AnDuong
  * @function LoginTest - Test class for Login functionality
  */
-public class LoginTest extends BaseTest {
+public class LoginTest_TC01 extends BaseTest {
 
     @Test(description = "User can log into Railway with valid username and password")
     public void testLoginWithValidCredentials() {
