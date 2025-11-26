@@ -11,7 +11,7 @@ import com.company.project.pages.HomePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginBookTicketRedirectTest extends BaseTest {
+public class LoginTest_TC04 extends BaseTest {
 
     @Test(description = "Login page displays when un-logged User clicks on 'Book ticket' tab")
     public void testLoginRedirectFromBookTicket() {

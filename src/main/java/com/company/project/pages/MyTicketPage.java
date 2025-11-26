@@ -37,4 +37,8 @@ public class MyTicketPage extends BasePage {
         ((org.openqa.selenium.JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);",
                 element);
     }
+
+    public String getPageTitle() {
+        return getDriver().getTitle();
+    }
 }

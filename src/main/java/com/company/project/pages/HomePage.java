@@ -57,4 +57,16 @@ public class HomePage extends BasePage {
         click(myTicketTab);
         return new MyTicketPage();
     }
+
+    public boolean isMyTicketTabDisplayed() {
+        return !getText(myTicketTab).isEmpty();
+    }
+
+    public boolean isChangePasswordTabDisplayed() {
+        return !getText(changePasswordTab).isEmpty();
+    }
+
+    public boolean isLogoutTabDisplayed() {
+        return !getText(logoutTab).isEmpty();
+    }
 }

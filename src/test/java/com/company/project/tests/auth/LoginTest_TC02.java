@@ -13,7 +13,7 @@ import com.company.project.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginBlankUsernameTest extends BaseTest {
+public class LoginTest_TC02 extends BaseTest {
 
     @Test(description = "User can't login with blank 'Username' textbox")
     public void testLoginWithBlankUsername() {

@@ -5,7 +5,6 @@ import com.company.project.base.BaseTest;
 import com.company.project.models.User;
 import com.company.project.pages.HomePage;
 import com.company.project.pages.LoginPage;
-import com.company.project.utils.JsonReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,7 +14,7 @@ import org.testng.annotations.Test;
  * @project Selenium1-railways-AnDuong
  * @function LoginTest - Test class for Login functionality
  */
-public class LoginTest extends BaseTest {
+public class LoginTest_TC01 extends BaseTest {
 
     @Test(description = "User can log into Railway with valid username and password")
     public void testLoginWithValidCredentials() {

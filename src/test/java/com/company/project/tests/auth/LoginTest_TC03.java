@@ -13,7 +13,7 @@ import com.company.project.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginInvalidPasswordTest extends BaseTest {
+public class LoginTest_TC03 extends BaseTest {
 
     @Test(description = "User cannot log into Railway with invalid password")
     public void testLoginWithInvalidPassword() {

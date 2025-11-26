@@ -13,7 +13,7 @@ import com.company.project.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginMultipleWrongPasswordTest extends BaseTest {
+public class LoginTest_TC05 extends BaseTest {
 
     @Test(description = "System shows message when user enters wrong password several times")
     public void testLoginWithMultipleWrongPasswords() {

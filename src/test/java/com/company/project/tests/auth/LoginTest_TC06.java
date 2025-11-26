@@ -15,7 +15,7 @@ import com.company.project.pages.MyTicketPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginAdditionalTabsTest extends BaseTest {
+public class LoginTest_TC06 extends BaseTest {
 
     @Test(description = "Additional pages display once user logged in")
     public void testAdditionalTabsDisplayAfterLogin() {
