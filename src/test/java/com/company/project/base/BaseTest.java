@@ -3,8 +3,6 @@ package com.company.project.base;
 
 import com.company.project.config.PropertiesLoader;
 import com.company.project.drivers.DriverManager;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 
 /**
  * @author AnDuong
