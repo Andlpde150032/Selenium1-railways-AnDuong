@@ -22,6 +22,10 @@ public class BasePage {
         ElementHelper.click(locator);
     }
 
+    protected void scrollAndClick(By locator) {
+        ElementHelper.scrollAndClick(locator);
+    }
+
     protected void enterText(By locator, String text) {
         ElementHelper.enterText(locator, text);
     }
@@ -36,6 +40,10 @@ public class BasePage {
 
     protected void scroll(By locator) {
         ElementHelper.scrollToElement(locator);
+    }
+
+    protected boolean isElementDisplayed(By locator) {
+        return ElementHelper.isElementDisplayed(locator);
     }
 
     public void openUrl(String url) {
