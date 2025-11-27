@@ -20,7 +20,7 @@ public class LoginPage extends BasePage {
     public void login(String username, String password) {
         enterText(usernameInput, username);
         enterText(passwordInput, password);
-        click(loginButton);
+        scrollAndClick(loginButton);
     }
 
     public String getWelcomeMessage() {
@@ -29,5 +29,10 @@ public class LoginPage extends BasePage {
 
     public String getErrorMessage() {
         return getText(errorMessage);
+    }
+
+    public ForgotPasswordPage goToForgotPasswordPage() {
+        click(By.linkText("Forgot Password page"));
+        return new ForgotPasswordPage();
     }
 }

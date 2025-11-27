@@ -2,5 +2,25 @@
   "login": {
     "email": "AdminAn@gmail.com",
     "password": "Admin12345"
+  },
+  "register": {
+    "password": "Password123",
+    "pid": "123456789"
+  },
+  "bookTicket": {
+    "departStation": "Sài Gòn",
+    "arriveStation": "Nha Trang",
+    "seatType": "Soft bed with air conditioner",
+    "ticketAmount": "1"
+  },
+  "tc15": {
+    "departStation": "Huế",
+    "arriveStation": "Sài Gòn"
+  },
+  "tc16": {
+    "departStation": "Huế",
+    "arriveStation": "Đà Nẵng",
+    "seatType": "Soft seat",
+    "ticketAmount": "1"
   }
 }
