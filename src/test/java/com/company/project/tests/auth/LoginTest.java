@@ -148,6 +148,20 @@ public class LoginTest extends BaseTest {
         String pid = JsonReader.getData("register", "pid");
 
         registerPage.register(randomEmail, password, password, pid);
+
+        LoginPage loginPage = homePage.goToLoginPage();
+        loginPage.login(randomEmail, password);
+
+        // Verify URL indicates we are still on Login page (or not on Home page)
+        String currentUrl = loginPage.getDriver().getCurrentUrl();
+        boolean containsLoginPage = currentUrl.contains("Login.cshtml");
+        Assert.assertEquals(containsLoginPage, true, "User should remain on Login page. Current URL: " + currentUrl);
+    }
+
+    private void performMultipleLoginAttempts(LoginPage loginPage, String username, String password, int attempts) {
+        for (int i = 0; i < attempts; i++) {
+            loginPage.login(username, password);
+            try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -155,4 +169,7 @@ public class LoginTest extends BaseTest {
             String errorMessage = loginPage.getErrorMessage();
             Assert.assertEquals(errorMessage, "Invalid username or password. Please try again.",
                     "Error message mismatch at attempt " + (i + 1));
-        }}}
+        }
+    }
+
+}
