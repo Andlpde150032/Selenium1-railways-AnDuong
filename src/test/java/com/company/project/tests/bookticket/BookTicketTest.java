@@ -16,8 +16,7 @@ import org.testng.annotations.Test;
  * @author AnDuong
  * @date 2025-11-25
  * @project Selenium1-railways-AnDuong
- * @function BookTicketTest - Test class for Book Ticket functionality (TC14,
- *           TC15)
+ * @function BookTicketTest - Test class for Book Ticket functionality (TC14,TC15)
  */
 public class BookTicketTest extends BaseTest {
 

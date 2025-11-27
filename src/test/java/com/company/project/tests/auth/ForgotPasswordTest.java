@@ -15,8 +15,7 @@ import org.testng.annotations.Test;
  * @author AnDuong
  * @date 2025-11-25
  * @project Selenium1-railways-AnDuong
- * @function ForgotPasswordTest - Test class for Forgot Password functionality
- *           (TC12, TC13)
+ * @function ForgotPasswordTest - Test class for Forgot Password functionality (TC12, TC13)
  */
 public class ForgotPasswordTest extends BaseTest {
 

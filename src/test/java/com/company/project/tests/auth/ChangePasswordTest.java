@@ -14,8 +14,7 @@ import org.testng.annotations.Test;
  * @author AnDuong
  * @date 2025-11-25
  * @project Selenium1-railways-AnDuong
- * @function ChangePasswordTest - Test class for Change Password functionality
- *           (TC09)
+ * @function ChangePasswordTest - Test class for Change Password functionality (TC09)
  */
 public class ChangePasswordTest extends BaseTest {
 

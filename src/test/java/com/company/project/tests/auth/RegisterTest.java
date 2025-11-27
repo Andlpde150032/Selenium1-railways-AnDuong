@@ -12,8 +12,7 @@ import org.testng.annotations.Test;
  * @author AnDuong
  * @date 2025-11-25
  * @project Selenium1-railways-AnDuong
- * @function RegisterTest - Test class for Register functionality (TC07, TC10,
- *           TC11)
+ * @function RegisterTest - Test class for Register functionality (TC07, TC10, TC11)
  */
 public class RegisterTest extends BaseTest {
 
