@@ -6,12 +6,18 @@ import com.company.project.pages.HomePage;
 import com.company.project.pages.LoginPage;
 import com.company.project.pages.RegisterPage;
 import com.company.project.utils.JsonReader;
+import com.company.project.utils.TestUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.company.project.utils.TestUtils;
-
-public class ChangePasswordTest_TC09 extends BaseTest {
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function ChangePasswordTest - Test class for Change Password functionality
+ *           (TC09)
+ */
+public class ChangePasswordTest extends BaseTest {
 
     @Test(description = "TC09 - User can change password")
     public void TC09_UserCanChangePassword() {
