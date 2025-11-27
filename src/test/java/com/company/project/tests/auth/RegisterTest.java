@@ -26,8 +26,8 @@ public class RegisterTest extends BaseTest {
 
         registerPage.register(randomEmail, "", "", "");
 
-        String errorMessage = registerPage.getErrorMessage();
-        Assert.assertEquals(errorMessage, "There's an error in the form. Please correct the fields and try again.",
+        String errorMessage = registerPage.getMainErrorMessage();
+        Assert.assertEquals(errorMessage, "There're errors in the form. Please correct the errors and try again.",
                 "Error message is not displayed correctly");
     }
 
