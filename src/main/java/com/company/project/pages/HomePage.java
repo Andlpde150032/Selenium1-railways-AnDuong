@@ -13,6 +13,10 @@ public class HomePage extends BasePage {
 
     private final By loginTab = By.xpath("//a[contains(@href, 'Login.cshtml')]");
     private final By registerTab = By.xpath("//a[contains(@href, 'Register.cshtml')]");
+    private final By bookTicketTab = By.xpath("//a[contains(@href, 'BookTicketPage.cshtml')]");
+    private final By myTicketTab = By.xpath("//a[contains(@href, 'ManageTicket.cshtml')]");
+    private final By changePasswordTab = By.xpath("//a[contains(@href, 'ChangePassword.cshtml')]");
+    private final By logoutTab = By.xpath("//a[contains(@href, 'Logout')]");
     private final By timetableTab = By.xpath("//a[contains(@href, 'TrainTimeListPage.cshtml')]");
 
     public void open() {
@@ -33,14 +37,24 @@ public class HomePage extends BasePage {
         return new RegisterPage();
     }
 
-    public TimetablePage goToTimetablePage() {
-        click(timetableTab);
-        return new TimetablePage();
+    public BookTicketPage goToBookTicketPage() {
+        click(bookTicketTab);
+        return new BookTicketPage();
     }
 
     public MyTicketPage goToMyTicketPage() {
         click(myTicketTab);
         return new MyTicketPage();
+    }
+
+    public ChangePasswordPage goToChangePasswordPage() {
+        click(changePasswordTab);
+        return new ChangePasswordPage();
+    }
+
+    public TimetablePage goToTimetablePage() {
+        click(timetableTab);
+        return new TimetablePage();
     }
 
     public boolean isMyTicketTabDisplayed() {
@@ -62,4 +76,5 @@ public class HomePage extends BasePage {
     public boolean isRegisterTabDisplayed() {
         return !getDriver().findElements(registerTab).isEmpty();
     }
+
 }
