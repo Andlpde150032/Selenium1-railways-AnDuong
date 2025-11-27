@@ -2,6 +2,8 @@ package com.company.project.pages;
 
 import org.openqa.selenium.By;
 
+import com.company.project.config.PropertiesLoader;
+
 /**
  * @author AnDuong
  * @date 2025-11-25
@@ -9,6 +11,8 @@ import org.openqa.selenium.By;
  * @function ChangePasswordPage - Page object for Change Password Page
  */
 public class ChangePasswordPage extends BasePage {
+
+    public static final String PAGE_URL = PropertiesLoader.getProperty("base.url") + "Account/ChangePassword.cshtml";
 
     private final By currentPasswordInput = By.id("currentPassword");
     private final By newPasswordInput = By.id("newPassword");
