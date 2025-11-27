@@ -47,13 +47,13 @@ public class MyTicketTest extends BaseTest {
         MyTicketPage myTicketPage = homePage.goToMyTicketPage();
 
         // Verify ticket exists before cancelling
-        Assert.assertTrue(myTicketPage.isTicketDisplayed(departStation, arriveStation),
+        Assert.assertEquals(myTicketPage.isTicketDisplayed(departStation, arriveStation), true,
                 "Ticket not found before cancellation");
 
         myTicketPage.cancelTicket(departStation, arriveStation);
 
         // Verify ticket is removed
-        Assert.assertFalse(myTicketPage.isTicketDisplayed(departStation, arriveStation),
+        Assert.assertEquals(myTicketPage.isTicketDisplayed(departStation, arriveStation), false,
                 "Ticket still displayed after cancellation");
     }
 

@@ -77,7 +77,9 @@ public class LoginTest extends BaseTest {
         homePage.clickBookTicketTab();
 
         String currentUrl = homePage.getDriver().getCurrentUrl();
-        Assert.assertTrue(currentUrl.contains("Login.cshtml"), "User is not redirected to Login page");
+        String expectedUrlPattern = "Login.cshtml";
+        Assert.assertTrue(currentUrl.contains(expectedUrlPattern),
+                String.format("Expected URL to contain '%s' but was: %s", expectedUrlPattern, currentUrl));
 
         String pageTitle = homePage.getDriver().getTitle();
         Assert.assertEquals(pageTitle, "Safe Railway - Login", "Page title is incorrect");
@@ -113,13 +115,13 @@ public class LoginTest extends BaseTest {
         loginPage.login(user.getEmail(), user.getPassword());
 
         // Verify additional tabs are displayed after login
-        Assert.assertTrue(homePage.isMyTicketTabDisplayed(), "My ticket tab is not displayed");
-        Assert.assertTrue(homePage.isChangePasswordTabDisplayed(), "Change password tab is not displayed");
-        Assert.assertTrue(homePage.isLogoutTabDisplayed(), "Logout tab is not displayed");
+        Assert.assertEquals(homePage.isMyTicketTabDisplayed(), true, "My ticket tab is not displayed");
+        Assert.assertEquals(homePage.isChangePasswordTabDisplayed(), true, "Change password tab is not displayed");
+        Assert.assertEquals(homePage.isLogoutTabDisplayed(), true, "Logout tab is not displayed");
 
         // Verify guest tabs are NOT displayed
-        Assert.assertFalse(homePage.isLoginTabDisplayed(), "Login tab is still displayed after login");
-        Assert.assertFalse(homePage.isRegisterTabDisplayed(), "Register tab is still displayed after login");
+        Assert.assertEquals(homePage.isLoginTabDisplayed(), false, "Login tab is still displayed after login");
+        Assert.assertEquals(homePage.isRegisterTabDisplayed(), false, "Register tab is still displayed after login");
 
         // Click My ticket tab and verify navigation via URL
         MyTicketPage myTicketPage = homePage.goToMyTicketPage();
@@ -172,5 +174,3 @@ public class LoginTest extends BaseTest {
         }
     }
 }
-
-    
