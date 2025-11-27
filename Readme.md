@@ -1,3 +1,79 @@
+# Railway Selenium Test Automation
+
+## 🛠️ Tech Stack
+
+- **Java** 21
+- **Selenium WebDriver** 4.38.0
+- **TestNG** 7.9.0
+- **Maven** (Build Tool)
+- **Allure** 2.24.0 (Reporting)
+- **Jackson** 2.16.1 (JSON Handling)
+- **Log4j2** 2.22.1 (Logging)
+
+## 🚀 Quick Setup
+
+### Prerequisites
+- Java JDK 21 or higher
+- Maven 3.6+
+- Chrome browser installed
+
+### Installation
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd Railway
+
+# Install dependencies
+mvn clean install
+```
+
+### Running Tests
+
+```bash
+# Run all tests
+mvn clean test
+
+# Run specific test
+mvn test -Dtest=LoginTest#TC01_LoginWithValidCredentials
+
+# Run tests from specific class
+mvn test -Dtest=LoginTest
+```
+
+### Generate Allure Report
+
+```bash
+# Run tests and generate report
+mvn clean test
+mvn allure:serve
+
+# Or just generate without opening
+mvn allure:report
+```
+
+### Project Structure
+
+```
+Railway/
+├── src/
+│   ├── main/java/com/company/project/
+│   │   ├── base/           # Base test classes
+│   │   ├── config/         # Configuration loader
+│   │   ├── helpers/        # Element helpers
+│   │   ├── models/         # Data models
+│   │   └── pages/          # Page Object Model
+│   └── test/
+│       ├── java/com/company/project/tests/  # Test classes
+│       └── resources/
+│           ├── config/     # Configuration files
+│           └── testdata/   # Test data
+├── pom.xml
+└── README.md
+```
+
+---
+
 # Test Cases: QA Railway Website
 
 | TC ID | TC Description | Steps | Expected Behavior |
