@@ -22,6 +22,10 @@ public class BasePage {
         ElementHelper.click(locator);
     }
 
+    protected void scrollAndClick(By locator) {
+        ElementHelper.scrollAndClick(locator);
+    }
+
     protected void enterText(By locator, String text) {
         ElementHelper.enterText(locator, text);
     }
@@ -38,6 +42,13 @@ public class BasePage {
         ElementHelper.scrollToElement(locator);
     }
 
+<<<<<<< HEAD
+=======
+    protected boolean isElementDisplayed(By locator) {
+        return ElementHelper.isElementDisplayed(locator);
+    }
+
+>>>>>>> integration-all-tcs
     public void openUrl(String url) {
         getDriver().get(url);
     }
