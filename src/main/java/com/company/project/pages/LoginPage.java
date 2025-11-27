@@ -15,13 +15,12 @@ public class LoginPage extends BasePage {
     private final By passwordInput = By.id("password");
     private final By loginButton = By.cssSelector("input[title='Login']");
     private final By welcomeMessage = By.xpath("//div[@class='account']/strong");
-
     private final By errorMessage = By.xpath("//p[contains(@class, 'message') and contains(@class, 'error')]");
 
     public void login(String username, String password) {
         enterText(usernameInput, username);
         enterText(passwordInput, password);
-        click(loginButton);
+        scrollAndClick(loginButton);
     }
 
     public String getWelcomeMessage() {
@@ -30,5 +29,10 @@ public class LoginPage extends BasePage {
 
     public String getErrorMessage() {
         return getText(errorMessage);
+    }
+
+    public ForgotPasswordPage goToForgotPasswordPage() {
+        click(By.linkText("Forgot Password page"));
+        return new ForgotPasswordPage();
     }
 }
