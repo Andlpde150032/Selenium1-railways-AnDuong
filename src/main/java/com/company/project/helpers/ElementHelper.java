@@ -1,4 +1,3 @@
-
 package com.company.project.helpers;
 
 import com.company.project.drivers.DriverManager;
@@ -21,6 +20,8 @@ import java.util.List;
  */
 public class ElementHelper {
 
+    private static final int TIMEOUT_IN_SECONDS = 2;
+
     private static WebDriver getDriver() {
         return DriverManager.getDriver();
     }
@@ -37,25 +38,23 @@ public class ElementHelper {
     }
 
     public static WebElement waitForElementVisible(By locator) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(TIMEOUT_IN_SECONDS));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public static WebElement waitForElementClickable(By locator) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(TIMEOUT_IN_SECONDS));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     public static void click(By locator) {
-        try {
-            waitForElementClickable(locator).click();
-        } catch (org.openqa.selenium.ElementClickInterceptedException e) {
-            WebElement element = waitForElementVisible(locator);
-            org.openqa.selenium.interactions.WheelInput.ScrollOrigin scrollOrigin = org.openqa.selenium.interactions.WheelInput.ScrollOrigin
-                    .fromElement(element);
-            new Actions(getDriver()).scrollFromOrigin(scrollOrigin, 0, 200).perform();
-            element.click();
-        }
+        waitForElementClickable(locator).click();
+    }
+
+    public static void scrollAndClick(By locator) {
+        WebElement element = waitForElementVisible(locator);
+        scrollToElement(element);
+        element.click();
     }
 
     public static void enterText(By locator, String text) {
@@ -69,7 +68,7 @@ public class ElementHelper {
         try {
             getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
             List<WebElement> elements = getDriver().findElements(locator);
-            getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(TIMEOUT_IN_SECONDS));
 
             if (elements.isEmpty()) {
                 return "";
@@ -80,6 +79,17 @@ public class ElementHelper {
             return element.getText();
         } catch (Exception e) {
             return "";
+        }
+    }
+
+    public static boolean isElementDisplayed(By locator) {
+        try {
+            getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
+            List<WebElement> elements = getDriver().findElements(locator);
+            getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(TIMEOUT_IN_SECONDS));
+            return !elements.isEmpty() && elements.get(0).isDisplayed();
+        } catch (Exception e) {
+            return false;
         }
     }
 

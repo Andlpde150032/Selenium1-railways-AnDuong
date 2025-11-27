@@ -19,6 +19,8 @@ public class PasswordResetPage extends BasePage {
     // input
     private final By tokenErrorMessage = By
             .xpath("//input[@id='resetToken']/following-sibling::label[@class='validation-error']");
+    private final By confirmPasswordErrorMessage = By
+            .xpath("//input[@id='confirmPassword']/following-sibling::label[@class='validation-error']");
 
     public void resetPassword(String newPassword, String confirmPassword, String token) {
         enterText(newPasswordInput, newPassword);
@@ -33,5 +35,9 @@ public class PasswordResetPage extends BasePage {
 
     public String getTokenErrorMessage() {
         return getText(tokenErrorMessage);
+    }
+
+    public String getConfirmPasswordErrorMessage() {
+        return getText(confirmPasswordErrorMessage);
     }
 }
