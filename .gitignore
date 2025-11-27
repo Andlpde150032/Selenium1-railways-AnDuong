@@ -4,3 +4,7 @@ target/
 .vscode/
 test_output.txt
 *.log
+
+# Allure
+allure-results/
+.allure/
