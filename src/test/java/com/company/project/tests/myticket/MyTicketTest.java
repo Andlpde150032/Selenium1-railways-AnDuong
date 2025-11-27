@@ -30,22 +30,25 @@ public class MyTicketTest extends BaseTest {
 
         BookTicketPage bookTicketPage = homePage.goToBookTicketPage();
 
-        String departDate = TestUtils.getFutureDate(5);
         String departStation = "Sài Gòn";
         String arriveStation = "Nha Trang";
         String seatType = "Soft seat with air conditioner";
         String ticketAmount = "1";
 
-        bookTicketPage.bookTicket(departDate, departStation, arriveStation, seatType, ticketAmount);
+        bookTicketPage.bookTicket(departStation, arriveStation, seatType, ticketAmount);
 
         MyTicketPage myTicketPage = homePage.goToMyTicketPage();
         
-        // Verify ticket exists before cancelling
-        Assert.assertTrue(myTicketPage.isTicketDisplayed(departStation, arriveStation, departDate, seatType, ticketAmount), "Ticket not found before cancellation");
 
-        myTicketPage.cancelTicket(departStation, arriveStation, departDate, seatType, ticketAmount);
+        Assert.assertTrue(myTicketPage.isTicketDisplayed(departStation, arriveStation), "Ticket not found before cancellation");
+
+                
+                
+        myTicketPage.cancelTicket(departStation, arriveStation);
 
         // Verify ticket is removed
-        Assert.assertFalse(myTicketPage.isTicketDisplayed(departStation, arriveStation, departDate, seatType, ticketAmount), "Ticket still displayed after cancellation");
+        Assert.assertFalse(myTicketPage.isTicketDisplayed(departStation, arriveStation), "Ticket still displayed after cancellation");
     }
+                
+                
 }
