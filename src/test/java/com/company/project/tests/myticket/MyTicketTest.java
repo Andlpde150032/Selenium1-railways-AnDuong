@@ -10,10 +10,16 @@ import com.company.project.utils.TestUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class MyTicketTest_TC16 extends BaseTest {
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function MyTicketTest - Test class for My Ticket functionality (TC16)
+ */
+public class MyTicketTest extends BaseTest {
 
-    @Test(description = "User can cancel a ticket")
-    public void TC16() {
+    @Test(description = "TC16 - User can cancel a ticket")
+    public void TC16_UserCanCancelTicket() {
         String email = TestUtils.generateRandomEmail();
         String password = JsonReader.getData("register", "password");
         String pid = JsonReader.getData("register", "pid");

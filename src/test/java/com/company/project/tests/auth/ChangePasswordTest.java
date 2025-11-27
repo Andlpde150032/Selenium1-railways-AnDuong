@@ -1,6 +1,7 @@
 package com.company.project.tests.auth;
 
 import com.company.project.base.BaseTest;
+import com.company.project.pages.ChangePasswordPage;
 import com.company.project.pages.HomePage;
 import com.company.project.pages.LoginPage;
 import com.company.project.pages.RegisterPage;
@@ -9,10 +10,17 @@ import com.company.project.utils.TestUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginTest_TC08 extends BaseTest {
+/**
+ * @author AnDuong
+ * @date 2025-11-25
+ * @project Selenium1-railways-AnDuong
+ * @function ChangePasswordTest - Test class for Change Password functionality
+ *           (TC09)
+ */
+public class ChangePasswordTest extends BaseTest {
 
-    @Test(description = "TC08 - User can't login with an account hasn't been activated")
-    public void TC08_UserCannotLoginWithUnactivatedAccount() {
+    @Test(description = "TC09 - User can change password")
+    public void TC09_UserCanChangePassword() {
         HomePage homePage = new HomePage();
         homePage.open();
 
@@ -27,9 +35,14 @@ public class LoginTest_TC08 extends BaseTest {
         LoginPage loginPage = homePage.goToLoginPage();
         loginPage.login(randomEmail, password);
 
-        String actualMessage = loginPage.getErrorMessage();
-        String expectedMessage = "Invalid username or password. Please try again.";
+        ChangePasswordPage changePasswordPage = homePage.goToChangePasswordPage();
 
-        Assert.assertEquals(actualMessage, expectedMessage, "Error message does not match!");
+        String newPassword = "NewPassword123";
+        changePasswordPage.changePassword(password, newPassword, newPassword);
+
+        String actualMessage = changePasswordPage.getSuccessMessage();
+        String expectedMessage = "Your password has been updated!";
+
+        Assert.assertEquals(actualMessage, expectedMessage, "Success message does not match!");
     }
 }

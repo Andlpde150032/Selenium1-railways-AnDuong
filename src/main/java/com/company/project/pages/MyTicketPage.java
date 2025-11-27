@@ -3,7 +3,11 @@ package com.company.project.pages;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 
+import com.company.project.config.PropertiesLoader;
+
 public class MyTicketPage extends BasePage {
+
+    public static final String PAGE_URL = PropertiesLoader.getProperty("base.url") + "Page/ManageTicket.cshtml";
 
     public void cancelTicket(String departStation, String arriveStation) {
         // XPath to find the 'Cancel' button in the row where Depart Station comes

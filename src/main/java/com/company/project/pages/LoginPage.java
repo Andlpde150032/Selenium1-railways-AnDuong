@@ -16,10 +16,11 @@ public class LoginPage extends BasePage {
     private final By loginButton = By.cssSelector("input[title='Login']");
     private final By welcomeMessage = By.xpath("//div[@class='account']/strong");
     private final By errorMessage = By.xpath("//p[contains(@class, 'message') and contains(@class, 'error')]");
+
     public void login(String username, String password) {
         enterText(usernameInput, username);
         enterText(passwordInput, password);
-        click(loginButton);
+        scrollAndClick(loginButton);
     }
 
     public String getWelcomeMessage() {

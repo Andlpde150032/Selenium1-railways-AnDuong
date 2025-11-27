@@ -59,14 +59,22 @@ public class HomePage extends BasePage {
     }
 
     public boolean isMyTicketTabDisplayed() {
-        return !getText(myTicketTab).isEmpty();
+        return isElementDisplayed(myTicketTab);
     }
 
     public boolean isChangePasswordTabDisplayed() {
-        return !getText(changePasswordTab).isEmpty();
+        return isElementDisplayed(changePasswordTab);
     }
 
     public boolean isLogoutTabDisplayed() {
-        return !getText(logoutTab).isEmpty();
+        return isElementDisplayed(logoutTab);
+    }
+
+    public boolean isLoginTabDisplayed() {
+        return !getDriver().findElements(loginTab).isEmpty();
+    }
+
+    public boolean isRegisterTabDisplayed() {
+        return !getDriver().findElements(registerTab).isEmpty();
     }
 }

@@ -12,7 +12,7 @@ import com.company.project.drivers.DriverManager;
  */
 public class BaseTest {
 
-    @org.testng.annotations.BeforeClass
+    @org.testng.annotations.BeforeMethod
     public void setUp() {
         String implicitWait = PropertiesLoader.getProperty("implicit.wait");
         String browser = PropertiesLoader.getProperty("browser");
@@ -22,7 +22,7 @@ public class BaseTest {
         DriverManager.initDriver(browser, implicitWait);
     }
 
-    @org.testng.annotations.AfterClass
+    @org.testng.annotations.AfterMethod
     public void tearDown() {
         DriverManager.quitDriver();
     }
