@@ -25,6 +25,10 @@ public class HomePage extends BasePage {
         return new LoginPage();
     }
 
+    public void clickBookTicketTab() {
+        click(bookTicketTab);
+    }
+
     public RegisterPage goToRegisterPage() {
         click(registerTab);
         return new RegisterPage();
@@ -38,5 +42,25 @@ public class HomePage extends BasePage {
     public MyTicketPage goToMyTicketPage() {
         click(myTicketTab);
         return new MyTicketPage();
+    }
+
+    public boolean isMyTicketTabDisplayed() {
+        return isElementDisplayed(myTicketTab);
+    }
+
+    public boolean isChangePasswordTabDisplayed() {
+        return isElementDisplayed(changePasswordTab);
+    }
+
+    public boolean isLogoutTabDisplayed() {
+        return isElementDisplayed(logoutTab);
+    }
+
+    public boolean isLoginTabDisplayed() {
+        return !getDriver().findElements(loginTab).isEmpty();
+    }
+
+    public boolean isRegisterTabDisplayed() {
+        return !getDriver().findElements(registerTab).isEmpty();
     }
 }
